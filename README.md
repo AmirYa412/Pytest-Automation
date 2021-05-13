@@ -1,21 +1,22 @@
-# api_tests Automation Project
-
-
 ## Test Automation Project - Pytest Framework
-#############################################################################
-I have used this lovely API to write some tests in Pytest framework.
-https://official-joke-api.appspot.com/random_joke
-Please support them.
-########### #################################################################
+### This repo contains 3 projects example, all of them written using Pytest framework.
+API  -  Pytest-Automation-Project/api_tests
 
-You can run the tests by marker (Search for: pytestmark global variable)
+GUI  -  Pytest-Automation-Project/gui_tests
 
-### How to:
+UNIT - Pytest-Automation-Project/unit_tests
+
+
+##### Run tests command:
 inside /Pytest-Automation-Project
 
 pip install -r requirements.txt
 
 ##### Run tests by markers:
+You can run the tests by marker 
+(Search for: pytestmark global variable to see which module collects by which marker)
+
+
 pytest -m gui 
 
 pytest -m api
@@ -29,7 +30,7 @@ pytest -m gui --html=ui_tests/reports/my_report.html --self-contained-html
 pytest -m api --html=api_tests/reports/my_report.html --self-contained-html
 
 
-#### INFO:
+### INFO:
 * Every project has conftest.py file, which in charge of the TestClasses setups for each project.
 * Default env value is production
 * Please don't run constantly to avoid blocking from the API.
