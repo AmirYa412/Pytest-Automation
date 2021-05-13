@@ -429,7 +429,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>all_tests_report.html</h1>
-    <p>Report generated on 13-May-2021 at 23:30:23 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <p>Report generated on 14-May-2021 at 02:07:12 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -445,8 +445,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <td>Python</td>
         <td>3.8.1</td></tr></table>
     <h2>Summary</h2>
-    <p>15 tests ran in 32.49 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">15 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>16 tests ran in 31.75 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">16 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -460,8 +460,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">api_tests/tests/jokes/test_api.py::TestJokes::test_get_random_joke_response_200</td>
-          <td class="col-duration">0.63</td>
+          <td class="col-name">api_tests/tests/pet/test_api.py::TestPet::test_unauthorized_user_cant_create_pet</td>
+          <td class="col-duration">0.73</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -469,8 +469,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">api_tests/tests/jokes/test_api.py::TestJokes::test_invalid_endoint_response_404[programming]</td>
-          <td class="col-duration">0.63</td>
+          <td class="col-name">api_tests/tests/pet/test_api.py::TestPetID::test_get_pet_by_id</td>
+          <td class="col-duration">0.60</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -478,8 +478,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">api_tests/tests/jokes/test_api.py::TestJokes::test_invalid_endoint_response_404[food]</td>
-          <td class="col-duration">1.40</td>
+          <td class="col-name">api_tests/tests/pet/test_api.py::TestPetFindByStatus::test_get_results_by_status[sold]</td>
+          <td class="col-duration">0.64</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -487,8 +487,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">api_tests/tests/jokes/test_api.py::TestJokesTen::test_get_10_jokes</td>
-          <td class="col-duration">1.40</td>
+          <td class="col-name">api_tests/tests/pet/test_api.py::TestPetFindByStatus::test_get_results_by_status[available]</td>
+          <td class="col-duration">1.07</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -496,8 +496,17 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">api_tests/tests/random_joke/test_api.py::TestRandomJoke::test_get_random_joke_response_200</td>
-          <td class="col-duration">1.39</td>
+          <td class="col-name">api_tests/tests/store/test_api.py::TestStoreInventory::test_get_store_inventory_data</td>
+          <td class="col-duration">0.65</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">api_tests/tests/store/test_api.py::TestStoreOrder::test_get_order_data_by_id</td>
+          <td class="col-duration">0.64</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -506,7 +515,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/home_page/test_home.py::TestHomePage::test_items_titles_displayed</td>
-          <td class="col-duration">6.51</td>
+          <td class="col-duration">7.57</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -526,7 +535,7 @@ INFO     WDM:logger.py:12 Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/home_page/test_home.py::TestHomePage::test_order_homepage_items_by_highest_price</td>
-          <td class="col-duration">7.19</td>
+          <td class="col-duration">6.62</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -546,7 +555,7 @@ INFO     WDM:logger.py:12 Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/login_page/test_login.py::TestLoginPage::test_login_redirect_to_homepage</td>
-          <td class="col-duration">6.47</td>
+          <td class="col-duration">6.51</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -566,7 +575,7 @@ INFO     WDM:logger.py:12 Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/login_page/test_login.py::TestLoginPage::test_red_err_msg_with_invalid_login_credentials</td>
-          <td class="col-duration">6.64</td>
+          <td class="col-duration">6.45</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
