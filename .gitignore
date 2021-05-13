@@ -1,3 +1,6 @@
 venv*/*
-*.pyc
 *.pytest_cache
+geckodriver.log
+__pycache__
+.idea
+*/reports/*

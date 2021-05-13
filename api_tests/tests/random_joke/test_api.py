@@ -1,6 +1,8 @@
 import pytest
 from api_tests.tests.random_joke.api_models import Random_Joke
 
+pytestmark = pytest.mark.api
+
 
 @pytest.mark.usefixtures("api_test_class_setup")
 class TestRandomJoke:
