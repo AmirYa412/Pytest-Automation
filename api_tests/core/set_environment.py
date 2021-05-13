@@ -3,11 +3,12 @@ import json
 
 _home_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
+
 class TestedEnvironment:
     def __init__(self, env_prefix):
         self.env_prefix = env_prefix
         self.protocol = "https://"
-        self.host = self.env_prefix + ".appspot.com"
+        self.host = self.env_prefix + ".swagger.io"
         self.is_sandbox_env = True if env_prefix in ("qa", "dev") else False
         self.headers = self.set_env_headers()
         self.users = self.get_automation_users()
@@ -22,9 +23,9 @@ class TestedEnvironment:
                 "Accept-Encoding": "gzip, deflate, br",
                 "Accept-Language": "en-US,en;q=0.9,",
                 "Connection": "keep-alive",
-                "Host": "{}.appspot.com".format(self.env_prefix),
-                "Origin": "https://{}.appspot.com".format(self.env_prefix),
-                "Referer": "https://{}.appspot.com/".format(self.env_prefix),
+                "Host": "{}.swagger.io".format(self.env_prefix),
+                "Origin": "https://{}.swagger.io".format(self.env_prefix),
+                "Referer": "https://{}.swagger.io/".format(self.env_prefix),
                 "Content-Type": "application/json; charset=utf-8",
                 "Sec-Fetch-Dest": "empty",
                 "Sec-Fetch-Mode": "cors",
@@ -38,7 +39,7 @@ class TestedEnvironment:
 
     def get_automation_users(self):
         users_file_name = "qa_test_users.json"
-        if self.env_prefix in ("www", "staging", "jsonplaceholder"):
+        if self.env_prefix in ("www", "staging", "petstore"):
             users_file_name = "prod_test_users.json"
         elif self.env_prefix in ("dev", "dev2"):
             users_file_name = "dev_test_users.jsvon"
