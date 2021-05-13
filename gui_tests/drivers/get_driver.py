@@ -25,8 +25,9 @@ class DriverManager:
         options = Options()
         options.add_argument("--start-maximized")
         options.add_experimental_option("useAutomationExtension", False)
+        options.add_experimental_option("excludeSwitches", ["disable-logging"])     # Disable Bluetooth error
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_experimental_option('prefs', {
+        options.add_experimental_option('prefs', {      # Disable Save password window
             'credentials_enable_service': False,
             'profile': {'password_manager_enabled': False}})
         try:
