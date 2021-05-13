@@ -2,7 +2,7 @@ from api_tests.core.set_client import ClientSession
 import json
 
 
-class Pet(ClientSession):
+class V2Pet(ClientSession):
     """
     Path:   /v2/pet
     """
@@ -19,13 +19,13 @@ class Pet(ClientSession):
                 }
 
 
-class PetID(ClientSession):
+class V2PetID(ClientSession):
     """
     Path:   /v2/pet/<PET_ID>
     """
 
 
-class PetFindbystatus(ClientSession):
+class V2PetFindbystatus(ClientSession):
     """
     Path:   /v2/pet/findByStatus
     """

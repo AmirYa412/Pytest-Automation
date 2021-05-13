@@ -1,7 +1,7 @@
 import pytest
-from api_tests.tests.pet.api_models import Pet
-from api_tests.tests.pet.api_models import PetID
-from api_tests.tests.pet.api_models import PetFindbystatus
+from api_tests.tests.pet.api_models import V2Pet
+from api_tests.tests.pet.api_models import V2PetID
+from api_tests.tests.pet.api_models import V2PetFindbystatus
 
 pytestmark = pytest.mark.api
 
@@ -9,7 +9,7 @@ pytestmark = pytest.mark.api
 @pytest.mark.usefixtures("api_test_class_setup")
 class TestPet:
     def test_unauthorized_user_cant_create_pet(self):
-        client = Pet(self.env)
+        client = V2Pet(self.env)
         data = client.get_payload_data()
         response = client.post_request('/v2/pet', data=data)
         assert response.status_code == 400
@@ -19,7 +19,7 @@ class TestPet:
 @pytest.mark.usefixtures("api_test_class_setup")
 class TestPetID:
     def test_get_pet_by_id(self):
-        client = PetID(self.env)
+        client = V2PetID(self.env)
         pet_id = 1
         response = client.get_request("/v2/pet/%s" % pet_id)
         assert response.status_code == 200
@@ -30,7 +30,7 @@ class TestPetID:
 class TestPetFindByStatus:
     @pytest.mark.parametrize("status", ["sold", "available"])
     def test_get_results_by_status(self, status):
-        client = PetFindbystatus(self.env)
+        client = V2PetFindbystatus(self.env)
         params = client.get_query_params(status=status)
         response = client.get_request('/v2/pet/findByStatus', params=params)
         assert response.status_code == 200
