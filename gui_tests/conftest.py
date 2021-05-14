@@ -14,7 +14,7 @@ def browser(request):
     if not browser:
         browser = "chrome"
         # browser = "firefox"
-        # browser = "explorer"
+        # browser = "edge"
     return browser
 
 

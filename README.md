@@ -5,13 +5,13 @@
 | Project  | Dir | Tested Service | Library used
 | ------------- | ------------- | ------------- | ------------- |
 | API  | /api_tests| https://petstore.swagger.io | requests |
-| GUI  | /gui_test | https://www.saucedemo.com | selenium |
+| GUI  | /gui_test | https://www.saucedemo.com | selenium, webdriver-manager |
 | Unit |/unit_test | My common functions | pytest-mock |
 
 You can run "pytest" command from a single project dir or repo's root.
 
 
-##Userful Commands
+## Userful Commands
 | Command  | Info | Inputs Examples
 | ------------- | ------------- | ------------- |
 | pytest -m api  | Run tests by marker, pytestmark global variable | api, gui, unit  |
@@ -29,5 +29,6 @@ You can run the tests by marker
 
 ### INFO:
 * Every project has conftest.py file, which in charge of the TestClasses setups for each project.
-* Default env value is production
+* Default env value is production.
 * Please don't run constantly to avoid blocking from the API.
+* Might need to update your Chrome/Edge/Firefox local browsers.
