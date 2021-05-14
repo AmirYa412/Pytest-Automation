@@ -4,13 +4,20 @@ API  -  Pytest-Automation-Project/api_tests
 
 GUI  -  Pytest-Automation-Project/gui_tests
 
-UNIT - Pytest-Automation-Project/unit_tests
+UNIT -  Pytest-Automation-Project/unit_tests
 
-
-##### Run tests command:
-inside /Pytest-Automation-Project
 
 pip install -r requirements.txt
+
+
+##### Run tests commands from within projects dirs:
+
+cd Pytest-Automation-Project/api_tests      ->  pytest
+
+cd Pytest-Automation-Project/gui_tests      ->  pytest
+
+cd Pytest-Automation-Project/unit_tests     ->  pytest
+
 
 ##### Run tests by markers:
 You can run the tests by marker 
@@ -28,6 +35,8 @@ pytest -m unit
 pytest -m gui --html=ui_tests/reports/my_report.html --self-contained-html
 
 pytest -m api --html=api_tests/reports/my_report.html --self-contained-html
+
+pytest -m unit --html=api_tests/reports/my_report.html --self-contained-html
 
 
 ### INFO:
