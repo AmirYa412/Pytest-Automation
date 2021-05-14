@@ -4,3 +4,4 @@ geckodriver.log
 __pycache__
 .idea
 */reports/*
+.gitignore
