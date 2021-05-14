@@ -3,6 +3,7 @@ import json
 
 _home_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
+
 class TestedEnvironment:
     def __init__(self, env_prefix):
         self.env_prefix = env_prefix
@@ -22,7 +23,7 @@ class TestedEnvironment:
                 "Accept-Encoding": "gzip, deflate, br",
                 "Accept-Language": "en-US,en;q=0.9,",
                 "Connection": "keep-alive",
-                "Host": "{}.aswagger.io".format(self.env_prefix),
+                "Host": "{}.swagger.io".format(self.env_prefix),
                 "Origin": "https://{}.swagger.io".format(self.env_prefix),
                 "Referer": "https://{}.swagger.io/".format(self.env_prefix),
                 "Content-Type": "application/json; charset=utf-8",
