@@ -2,11 +2,11 @@
 ### This repo contains 3 projects example, all of them written using Pytest framework.
 
 
-| Project  | Dir | Tested Service | Library used
-| ------------- | ------------- | ------------- | ------------- |
-| API  | /api_tests| https://petstore.swagger.io | requests |
-| GUI  | /gui_test | https://www.saucedemo.com | selenium, webdriver-manager |
-| Unit |/unit_test | My common functions | pytest-mock |
+| Project  | Dir | Tested Service | Library used | Design
+| ------------- | ------------- | ------------- | ------------- |------------- |
+| API  | /api_tests| https://petstore.swagger.io | requests |API endpoints to classes  |
+| GUI  | /gui_test | https://www.saucedemo.com | selenium, webdriver-manager |Page Object Pattern |
+| Unit |/unit_test | My common functions | pytest-mock | Test file in module level
 
 You can run "pytest" command from a single project dir or repo's root.
 
