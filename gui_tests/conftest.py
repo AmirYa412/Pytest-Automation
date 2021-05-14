@@ -4,7 +4,7 @@ from gui_tests.core.set_environment import TestedEnvironment
 
 
 def pytest_addoption(parser):
-    parser.addoption("--env", action="store", default=None, help="Invalid ENV")
+    parser.addoption("--gui_env", action="store", default=None, help="Invalid ENV")
     parser.addoption("--browser", action="store", default=None, help="Invalid browser")
 
 
@@ -21,7 +21,7 @@ def browser(request):
 @pytest.fixture(scope="session")
 def env(request):
     """Determine which environment driver send requests to """
-    env_prefix = request.config.getoption("--env")   # Terminal Option
+    env_prefix = request.config.getoption("--gui_env")   # Terminal Option
     if not env_prefix:
         env_prefix = "www"  # Overide to production env
         # env_prefix = "qa"
