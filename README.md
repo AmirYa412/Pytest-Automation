@@ -23,7 +23,7 @@ You can run "pytest" command from a single project dir or repo's root.
 | ```pytest -m api```  | Run tests by marker, pytestmark global variable | ```-m api```, ```-m gui```, ```-m unit```  |
 | ```pytest --html=reports/my_report.html --self-contained-html```  | Creates HTML report |
 | ```pytest -m api --api_env=petstore``` | *Run inside **/api_tests** to enable this terminal option | ```-m api --api_env=qa```  |
-| ```pytest -m gui --gui_env=www``` | *Run inside **/gui_tests** to enable this terminal option | ```-m gui --gui_env=qa```  |
+| ```pytest -m gui --gui_env=www``` | *Run inside **/gui_tests** to enable this terminal option | ```-m gui --gui_env=qa-petstore```  |
 | ```pytest -m gui --browser=chrome```  | *Run inside **/gui_tests** - Choose browser to initiate| ```--browser=firefox```, ```--browser=edge```, ```--browser=chrome```  |
 | ```pytest -n 2```  | Run tests in parallel | ```-n 2```, ```-n 3```  |
 
