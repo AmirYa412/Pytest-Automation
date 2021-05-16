@@ -31,5 +31,5 @@ You can run "pytest" command from a single project dir or repo's root.
 ### INFO:
 * Every project has conftest.py file, which in charge of the TestClasses setups for each project.
 * Default env value is production.
-* Please don't run constantly to avoid blocking from the API.
+* Please don't run constantly to avoid rate-limit.
 * Might need to update your Chrome/Edge/Firefox local browsers.
