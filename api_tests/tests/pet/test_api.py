@@ -19,8 +19,12 @@ class TestPet:
 @pytest.mark.usefixtures("api_test_class_setup")
 class TestPetID:
     def test_get_pet_by_id(self):
+        status = "available"
+        params = V2PetFindbystatus.get_query_params(status=status)
         client = V2PetID(self.env)
-        pet_id = 1
+        response = client.get_request('/v2/pet/findByStatus', params=params)
+        assert response.status_code == 200
+        pet_id = response.json()[0]["id"]
         response = client.get_request("/v2/pet/%s" % pet_id)
         assert response.status_code == 200
         assert response.json()["id"] == pet_id

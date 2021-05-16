@@ -1,7 +1,6 @@
 import pytest
 from api_tests.tests.store.api_models import V2StoreInventory
 from api_tests.tests.store.api_models import V2StoreOrder
-from api_tests.utils.custom_assert_utils import KeyAsserter
 
 pytestmark = pytest.mark.api
 
@@ -13,7 +12,7 @@ class TestStoreInventory:
         response = client.get_request('/v2/store/inventory')
         assert response.status_code == 200
         response_data = response.json()
-        assert len(response_data.keys()) > 4
+        assert len(response_data.keys()) > 0
 
 
 @pytest.mark.usefixtures("api_test_class_setup")
