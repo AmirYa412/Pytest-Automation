@@ -43,6 +43,7 @@ class DriverManager:
             driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
         except BaseException:
             driver = webdriver.Firefox(executable_path=os.path.join(_HOME_PATH, "drivers", "firefox", "geckodriver.exe"))
+        driver.maximize_window()
         return driver
 
     @staticmethod
