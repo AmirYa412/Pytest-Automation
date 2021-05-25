@@ -1,5 +1,5 @@
 import pytest
-from gui_tests.tests.home_page.page import HomePage
+from gui_tests.pages.home.home_page import HomePage
 
 pytestmark = pytest.mark.gui
 

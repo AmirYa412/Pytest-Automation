@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from gui_tests.tests.login_page.locators import LoginPageLocators
+from gui_tests.pages.login.locators import LoginPageLocators
 import time
 from random import randint
 import string

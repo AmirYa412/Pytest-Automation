@@ -1,5 +1,5 @@
 import pytest
-from gui_tests.tests.login_page.page import LoginPage
+from gui_tests.pages.login.login_page import LoginPage
 
 pytestmark = pytest.mark.gui
 
