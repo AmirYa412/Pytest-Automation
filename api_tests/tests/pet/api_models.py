@@ -2,9 +2,9 @@ from api_tests.core.set_client import ClientSession
 import json
 
 
-class V2Pet(ClientSession):
+class Pet(ClientSession):
     """
-    Path:   /v2/pet
+    Path:   /pet
     """
 
     @staticmethod
@@ -19,15 +19,15 @@ class V2Pet(ClientSession):
                 }
 
 
-class V2PetID(ClientSession):
+class PetID(ClientSession):
     """
-    Path:   /v2/pet/<PET_ID>
+    Path:   /pet/<PET_ID>
     """
 
 
-class V2PetFindbystatus(ClientSession):
+class PetFindByStatus(ClientSession):
     """
-    Path:   /v2/pet/findByStatus
+    Path:   /pet/findByStatus
     """
     @staticmethod
     def get_query_params(status=None):

@@ -2,16 +2,16 @@ from api_tests.core.set_client import ClientSession
 from datetime import datetime
 
 
-class V2StoreInventory(ClientSession):
+class StoreInventory(ClientSession):
     """
-    Path:   /v2/store/inventory
+    Path:   /store/inventory
     """
 
 
-class V2StoreOrder(ClientSession):
+class StoreOrder(ClientSession):
     """
-    Path: /v2/store/order
-    Path: /v2/store/order/<ORDER_ID>
+    Path:   /store/order
+            /store/order/<ORDER_ID>
     """
     @staticmethod
     def get_payload_data(id=None, pet_id=None, quantity=None, status=None, complete=True):

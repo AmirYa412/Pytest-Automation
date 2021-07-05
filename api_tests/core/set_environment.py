@@ -8,7 +8,7 @@ class TestedEnvironment:
     def __init__(self, env_prefix):
         self.env_prefix = env_prefix
         self.protocol = "https://"
-        self.host = self.env_prefix + ".swagger.io"
+        self.host = self.env_prefix + ".swagger.io/v2"
         self.is_sandbox_env = True if env_prefix in ("qa", "dev") else False
         self.headers = self.set_env_headers()
         self.users = self.get_automation_users()
