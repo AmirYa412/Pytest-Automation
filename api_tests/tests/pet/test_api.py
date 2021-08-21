@@ -10,7 +10,7 @@ pytestmark = pytest.mark.api
 class TestPet:
     def test_unauthorized_user_cant_create_pet(self):
         client = Pet(self.env)
-        data = client.get_payload_data()
+        data = client.get_payload_data(category_id=1, category_name="Pug", pet_name="Rodulf", photo_url="https://some.url.com/img.jpeg")
         response = client.post_request('/pet', data=data)
         assert response.status_code == 400
         assert response.json()["message"] == "bad input"

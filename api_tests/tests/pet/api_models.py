@@ -8,9 +8,8 @@ class Pet(ClientSession):
     """
 
     @staticmethod
-    def get_payload_data(pet_id=None, category_id=None, category_name=None, pet_name=None, photo_url=None, tag_id=None, tag_name=None, status=None):
+    def get_payload_data(category_id=None, category_name=None, pet_name=None, photo_url=None, tag_id=None, tag_name=None, status=None):
         return {
-                  "id": pet_id,
                   "category": json.dumps({"id": category_id, "name": category_name}),
                   "name": pet_name,
                   "photoUrls": json.dumps([photo_url]),

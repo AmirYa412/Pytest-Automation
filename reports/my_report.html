@@ -428,8 +428,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
     notFoundMessage.hidden = !allRowsHidden;
 }
 </script>
-    <h1>all_tests_report_example.html</h1>
-    <p>Report generated on 14-May-2021 at 02:34:58 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h1>my_report.html</h1>
+    <p>Report generated on 06-Sep-2021 at 13:57:21 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -437,16 +437,16 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <td>{"pluggy": "0.13.1", "py": "1.10.0", "pytest": "6.2.4"}</td></tr>
       <tr>
         <td>Platform</td>
-        <td>Windows-10-10.0.19041-SP0</td></tr>
+        <td>Darwin-19.6.0-x86_64-i386-64bit</td></tr>
       <tr>
         <td>Plugins</td>
-        <td>{"html": "3.1.1", "metadata": "1.11.0", "mock": "3.6.1"}</td></tr>
+        <td>{"forked": "1.3.0", "html": "3.1.1", "metadata": "1.11.0", "mock": "3.6.1", "xdist": "2.2.1"}</td></tr>
       <tr>
         <td>Python</td>
-        <td>3.8.1</td></tr></table>
+        <td>3.7.3</td></tr></table>
     <h2>Summary</h2>
-    <p>16 tests ran in 31.19 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">16 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>17 tests ran in 29.23 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">17 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -461,7 +461,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">api_tests/tests/pet/test_api.py::TestPet::test_unauthorized_user_cant_create_pet</td>
-          <td class="col-duration">0.75</td>
+          <td class="col-duration">1.05</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -469,8 +469,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">api_tests/tests/pet/test_api.py::TestPetID::test_get_pet_by_id</td>
-          <td class="col-duration">0.60</td>
+          <td class="col-name">api_tests/tests/pet/test_api.py::TestPetID::test_not_exists_id_status_code_404</td>
+          <td class="col-duration">0.57</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -479,7 +479,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">api_tests/tests/pet/test_api.py::TestPetFindByStatus::test_get_results_by_status[sold]</td>
-          <td class="col-duration">0.64</td>
+          <td class="col-duration">0.70</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -488,7 +488,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">api_tests/tests/pet/test_api.py::TestPetFindByStatus::test_get_results_by_status[available]</td>
-          <td class="col-duration">1.03</td>
+          <td class="col-duration">1.18</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -497,7 +497,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">api_tests/tests/store/test_api.py::TestStoreInventory::test_get_store_inventory_data</td>
-          <td class="col-duration">0.65</td>
+          <td class="col-duration">0.60</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -505,8 +505,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">api_tests/tests/store/test_api.py::TestStoreOrder::test_get_order_data_by_id</td>
-          <td class="col-duration">0.64</td>
+          <td class="col-name">api_tests/tests/store/test_api.py::TestStoreOrder::test_block_invalid_order_creation</td>
+          <td class="col-duration">0.58</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -515,86 +515,101 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/home_page/test_home.py::TestHomePage::test_items_titles_displayed</td>
-          <td class="col-duration">6.70</td>
+          <td class="col-duration">8.00</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
             <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>
 
 ====== WebDriver manager ======
-Current google-chrome version is 90.0.4430
-Get LATEST driver version for 90.0.4430
-Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache
+Current google-chrome version is 93.0.4577
+Get LATEST driver version for 93.0.4577
+There is no [mac64] chromedriver for browser 93.0.4577 in cache
+Get LATEST driver version for 93.0.4577
+Trying to download new driver from https://chromedriver.storage.googleapis.com/93.0.4577.15/chromedriver_mac64.zip
+Driver has been saved in cache [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15]
 <br/> -------------------------------Captured log setup------------------------------- <br/>INFO     WDM:logger.py:22 
 
 INFO     WDM:logger.py:12 ====== WebDriver manager ======
-INFO     WDM:logger.py:12 Current google-chrome version is 90.0.4430
-INFO     WDM:logger.py:12 Get LATEST driver version for 90.0.4430
-INFO     WDM:logger.py:12 Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache<br/></div></td></tr></tbody>
+INFO     WDM:logger.py:12 Current google-chrome version is 93.0.4577
+INFO     WDM:logger.py:12 Get LATEST driver version for 93.0.4577
+INFO     WDM:logger.py:12 There is no [mac64] chromedriver for browser 93.0.4577 in cache
+INFO     WDM:logger.py:12 Get LATEST driver version for 93.0.4577
+INFO     WDM:logger.py:12 Trying to download new driver from https://chromedriver.storage.googleapis.com/93.0.4577.15/chromedriver_mac64.zip
+INFO     WDM:logger.py:12 Driver has been saved in cache [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15]<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/home_page/test_home.py::TestHomePage::test_order_homepage_items_by_highest_price</td>
-          <td class="col-duration">6.80</td>
+          <td class="col-duration">5.54</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
             <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>
 
 ====== WebDriver manager ======
-Current google-chrome version is 90.0.4430
-Get LATEST driver version for 90.0.4430
-Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache
+Current google-chrome version is 93.0.4577
+Get LATEST driver version for 93.0.4577
+Driver [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15/chromedriver] found in cache
 <br/> -------------------------------Captured log setup------------------------------- <br/>INFO     WDM:logger.py:12 
 
 INFO     WDM:logger.py:12 ====== WebDriver manager ======
-INFO     WDM:logger.py:12 Current google-chrome version is 90.0.4430
-INFO     WDM:logger.py:12 Get LATEST driver version for 90.0.4430
-INFO     WDM:logger.py:12 Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache<br/></div></td></tr></tbody>
+INFO     WDM:logger.py:12 Current google-chrome version is 93.0.4577
+INFO     WDM:logger.py:12 Get LATEST driver version for 93.0.4577
+INFO     WDM:logger.py:12 Driver [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15/chromedriver] found in cache<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/login_page/test_login.py::TestLoginPage::test_login_redirect_to_homepage</td>
-          <td class="col-duration">6.44</td>
+          <td class="col-duration">5.17</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
             <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>
 
 ====== WebDriver manager ======
-Current google-chrome version is 90.0.4430
-Get LATEST driver version for 90.0.4430
-Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache
+Current google-chrome version is 93.0.4577
+Get LATEST driver version for 93.0.4577
+Driver [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15/chromedriver] found in cache
 <br/> -------------------------------Captured log setup------------------------------- <br/>INFO     WDM:logger.py:12 
 
 INFO     WDM:logger.py:12 ====== WebDriver manager ======
-INFO     WDM:logger.py:12 Current google-chrome version is 90.0.4430
-INFO     WDM:logger.py:12 Get LATEST driver version for 90.0.4430
-INFO     WDM:logger.py:12 Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache<br/></div></td></tr></tbody>
+INFO     WDM:logger.py:12 Current google-chrome version is 93.0.4577
+INFO     WDM:logger.py:12 Get LATEST driver version for 93.0.4577
+INFO     WDM:logger.py:12 Driver [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15/chromedriver] found in cache<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">gui_tests/tests/login_page/test_login.py::TestLoginPage::test_red_err_msg_with_invalid_login_credentials</td>
-          <td class="col-duration">6.42</td>
+          <td class="col-duration">5.55</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
             <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/>
 
 ====== WebDriver manager ======
-Current google-chrome version is 90.0.4430
-Get LATEST driver version for 90.0.4430
-Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache
+Current google-chrome version is 93.0.4577
+Get LATEST driver version for 93.0.4577
+Driver [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15/chromedriver] found in cache
 <br/> -------------------------------Captured log setup------------------------------- <br/>INFO     WDM:logger.py:12 
 
 INFO     WDM:logger.py:12 ====== WebDriver manager ======
-INFO     WDM:logger.py:12 Current google-chrome version is 90.0.4430
-INFO     WDM:logger.py:12 Get LATEST driver version for 90.0.4430
-INFO     WDM:logger.py:12 Driver [C:\Users\Amir\.wdm\drivers\chromedriver\win32\90.0.4430.24\chromedriver.exe] found in cache<br/></div></td></tr></tbody>
+INFO     WDM:logger.py:12 Current google-chrome version is 93.0.4577
+INFO     WDM:logger.py:12 Get LATEST driver version for 93.0.4577
+INFO     WDM:logger.py:12 Driver [/Users/amiryamin/.wdm/drivers/chromedriver/mac64/93.0.4577.15/chromedriver] found in cache<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">unit_tests/models/google/test_google_photos.py::TestGooglePhotos::test_get_user_photos</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">unit_tests/models/google/test_google_photos.py::TestGooglePhotos::test_get_first_photo_data</td>
           <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>

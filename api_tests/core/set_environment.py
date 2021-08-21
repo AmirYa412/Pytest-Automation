@@ -13,9 +13,6 @@ class TestedEnvironment:
         self.headers = self.set_env_headers()
         self.users = self.get_automation_users()
 
-    def is_sandbox_env(self):
-        return self.env_prefix in ("qa", "dev")
-
     def set_env_headers(self):
         try:
             return {

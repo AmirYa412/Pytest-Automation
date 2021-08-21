@@ -1,22 +1,16 @@
-import requests
+from unit_tests.models.google.google_auth import Google
 
 
-class GooglePhotos:
-    def __init__(self, user, password):
-        self.user = user
-        self.password = password
-        self.session = requests.Session()
+class GooglePhotos(Google):
 
-    def google_login(self):
-        data = {
-            "username": self.user,
-            "password": self.user
-        }
-        response = self.session.post("https://www.google.com/api/auth", data=data)
-        response.raise_for_status()
+    def get_user_google_photos(self):
+        try:
+            user_data = self.fetch_user_data_from_google()
+            user_photos = user_data["media"]["photos"]
+            if len(user_photos) > 0:
+                for item in user_photos:
+                    item["service"] = "google_photos"
+            return user_photos
+        except Exception:
+            raise Exception("Could fetch photos's data from Google")
 
-    def get_user_google_photos(self):  # In our test we will mock this function's return value to avoid google_login()
-        self.google_login()
-        response = self.session.get("https://www.google.com/api/google/photos")
-        response.raise_for_status()
-        return response.json()
