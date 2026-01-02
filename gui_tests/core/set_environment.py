@@ -1,7 +1,7 @@
 import os
 import json
 
-_home_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+_GUI_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 class TestedEnvironment:
@@ -21,6 +21,6 @@ class TestedEnvironment:
         elif self.prefix in ("dev", "dev2"):
             users_file_name = "dev_test_users.json"
 
-        with open(os.path.join(_home_path, 'test_users', users_file_name)) as users_file:
+        with open(os.path.join(_GUI_PROJECT_ROOT, 'test_users', users_file_name)) as users_file:
             users = json.loads(users_file.read())
         return users
