@@ -64,6 +64,15 @@ class TestGoogleClientAuthentication:
         with pytest.raises(GoogleAuthError) as exc_info:
             client.login()
 
+    def test_login_request_exception_raises_error(self, mocker):
+        # Using pytest-mock to patch the post method to raise RequestException
+        mocker.patch(
+            'requests.Session.post',
+            side_effect=requests.exceptions.RequestException("Network error")
+        )
+        client = GoogleClient("user@test.com", "password")
+        with pytest.raises(GoogleAuthError) as exc_info:
+            client.login()
 
     def test_ensure_authenticated_refreshes_expired_token(self, mocker):
         client = GoogleClient("user@test.com", "password")
