@@ -1,5 +1,5 @@
 import pytest
-from api_tests.core.set_environment import TestedEnvironment
+from api_tests.support.environment import TestedEnvironment
 
 
 def pytest_addoption(parser):
@@ -11,10 +11,9 @@ def env(request):
     """Determine to which ClientSession will send requests to """
     env_prefix = request.config.getoption("--api_env")   # Terminal Option
     if not env_prefix:
-        env_prefix = "petstore"                  # Overide PROD  env
-        # env_prefix = "qa-petstore"             # Overide QA env
-        # env_prefix = "dev-petstore"            # Overide DEV env
-
+        env_prefix = "petstore"                  # Override PROD  env
+        # env_prefix = "qa-petstore"             # Override to dummy QA env
+        # env_prefix = "dev-petstore"            # Override to dummy DEV env
     return TestedEnvironment(env_prefix)
 
 
