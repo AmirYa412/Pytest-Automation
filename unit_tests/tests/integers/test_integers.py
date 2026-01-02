@@ -1,5 +1,5 @@
 import pytest
-from unit_tests.models.integers.integers import Integers
+from unit_tests.src.integers.integers import Integers
 
 pytestmark = pytest.mark.unit
 

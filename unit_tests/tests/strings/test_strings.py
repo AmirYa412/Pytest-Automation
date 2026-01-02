@@ -1,5 +1,5 @@
 import pytest
-from unit_tests.models.strings.convert_string import ConvertString
+from unit_tests.src.strings.convert_string import ConvertString
 
 pytestmark = pytest.mark.unit
 
