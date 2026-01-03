@@ -92,10 +92,6 @@ pytest tests/ -v
 # Specific file
 pytest tests/google/test_authentication.py -v
 
-# By marker
-pytest -m auth -v
-pytest -m pagination -v
-
 # With coverage
 pytest tests/ --cov=src --cov-report=html
 ```
