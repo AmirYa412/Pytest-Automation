@@ -1,6 +1,6 @@
 from gui_tests.utils.base_page import BasePage
-from gui_tests.pages.login.locators import LoginPageLocators
-from gui_tests.pages.home.locators import HomePageLocators
+from gui_tests.pages.locators.login_page_locators import LoginPageLocators
+from gui_tests.pages.locators.home_page_locators import HomePageLocators
 
 
 class LoginPage(BasePage):
