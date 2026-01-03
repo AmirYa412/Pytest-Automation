@@ -1,4 +1,4 @@
-# Unit Testing Framework - Demo Project
+# Unit Testing Framework
 
 A professional unit testing framework demonstrating best practices for Python testing with pytest, showcasing various mocking patterns and test organization strategies.
 
