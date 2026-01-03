@@ -30,7 +30,9 @@ class BrowserFactory:
         """Get driver instance for specified browser."""
         if self.browser not in self._supported_browsers:
             raise ValueError(f"Unsupported browser: {self.browser}. Supported: {list(self._supported_browsers.keys())}")
-        return self._supported_browsers[self.browser]()
+        driver = self._supported_browsers[self.browser]()
+        self._log_browser_info(driver)
+        return driver
 
     def _chrome(self):
         """Create Chrome driver with current configuration."""
@@ -89,5 +91,20 @@ class BrowserFactory:
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
 
-
-
+    def _log_browser_info(self, driver):
+        """
+        Log browser version and configuration details.
+        TODO: Replace print with proper logger when logging is implemented.
+        """
+        try:
+            caps = driver.capabilities
+            browser_name = caps.get('browserName', 'Unknown')
+            browser_version = caps.get('browserVersion') or caps.get('version', 'Unknown')
+            platform_name = caps.get('platformName', 'Unknown')
+            print(f"{'=' * 60}\nBROWSER SESSION INFO\n{'=' * 60}")
+            print(f"Browser:      {browser_name.title()} {browser_version}")
+            print(f"Platform:     {platform_name}")
+            print(f"Headless:     {self.headless}")
+            print(f"Maximized:    {self.maximize_window}")
+        except Exception as e:
+            print(f"Warning: Could not log browser info: {e}")
