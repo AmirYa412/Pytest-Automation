@@ -1,5 +1,5 @@
 from gui_tests.utils.base_page import BasePage
-from gui_tests.pages.home.locators import HomePageLocators
+from gui_tests.pages.locators.home_page_locators import HomePageLocators
 
 
 class HomePage(BasePage):
