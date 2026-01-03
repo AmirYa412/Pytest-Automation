@@ -59,7 +59,7 @@ class TestGoogleClientPhotos:
         (-1, "Page number must be >= 1"),
         (-100, "Page number must be >= 1"),
     ])
-    def test_pagination_with_invalid_page_number(self, mocker, invalid_page, error_message):
+    def test_pagination_with_invalid_page_number(self, invalid_page, error_message):
         client = GoogleClientPhotos("user@test.com", "password")
 
         with pytest.raises(PaginationError) as exc_info:

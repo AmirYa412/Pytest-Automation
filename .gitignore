@@ -1,7 +1,7 @@
 *venv*/*
 *.pytest_cache
 geckodriver.log
-__pycache__
+*__pycache__
 .idea
 *reports/*
 .gitignore

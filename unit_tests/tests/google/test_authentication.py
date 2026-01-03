@@ -15,7 +15,7 @@ class TestGoogleClientAuthentication:
         mock_response = GoogleAuthMocks.successful_login_response()
         responses.add(
             responses.POST,
-            "https://dev.google.com/api/auth",
+            f"{GoogleClient.BASE_URL}/auth",
             json=mock_response,
             status=200
         )
@@ -33,7 +33,7 @@ class TestGoogleClientAuthentication:
     def test_login_with_invalid_credentials_raises_error(self):
         responses.add(
             responses.POST,
-            "https://dev.google.com/api/auth",
+             f"{GoogleClient.BASE_URL}/auth",
             json=GoogleAuthMocks.invalid_credentials_response(),
             status=401
         )
@@ -57,7 +57,7 @@ class TestGoogleClientAuthentication:
     def test_login_timeout_raises_error(self):
         responses.add(
             responses.POST,
-            "https://dev.google.com/api/auth",
+             f"{GoogleClient.BASE_URL}/auth",
             body=requests.exceptions.Timeout()
         )
         client = GoogleClient("user@test.com", "password")
