@@ -54,8 +54,7 @@ def data():
 
 
 @pytest.fixture(scope="class")
-def gui_test_class_setup(request, env, data, log):
-    request.cls.env = env
+def gui_test_class_setup(request, data, log):
     request.cls.data = data
     request.cls.log = log
 
