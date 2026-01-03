@@ -4,16 +4,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
-from gui_tests.pages.login.locators import LoginPageLocators
+from gui_tests.pages.locators.login_page_locators import LoginPageLocators
 import time
 from random import randint
 import string
 
 
 class BasePage:
-    def __init__(self, driver: WebDriver, env=None, ):
+    def __init__(self, driver: WebDriver):
         self.driver = driver
-        self.env = env
+        self.env = driver.env
         self.navigate()
 
     def navigate(self, path="/"):
@@ -38,7 +38,7 @@ class BasePage:
         try:
             self.driver.refresh()
         except BaseException as e:
-            raise BaseException(e, 'Couldnt refresh page')
+            raise BaseException(e, "Couldn't refresh page")
 
     def explicit_wait_element_visibilty(self, sec, locator):
         try:
