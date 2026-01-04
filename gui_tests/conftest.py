@@ -1,6 +1,7 @@
-import pytest
-from gui_tests.drivers.browser_factory import BrowserFactory
-from gui_tests.core.set_environment import TestedEnvironment
+from pytest import fixture
+from gui_tests.factories.pages import PageFactory
+from gui_tests.factories.browser import BrowserFactory
+from gui_tests.support.environment import Environment
 
 
 def pytest_addoption(parser):
@@ -10,18 +11,18 @@ def pytest_addoption(parser):
     parser.addoption("--maximize", action="store_true", help="maximize window")
 
 
-@pytest.fixture(scope="session")
+@fixture(scope="session")
 def browser(request):
     browser = request.config.getoption("--browser")
     if not browser:
-        browser = "chrome" # Default to Chrome if not arg provided
+        browser = "chrome" # Default to Chrome if --browser not provided
         # browser = "firefox"
         # browser = "edge"
         # browser = "safari"
     return browser
 
 
-@pytest.fixture(scope="session")
+@fixture(scope="session")
 def env(request):
     """Determine which environment driver send requests to """
     env_prefix = request.config.getoption("--gui_env")   # Terminal Option
@@ -29,10 +30,10 @@ def env(request):
         env_prefix = "www"
         # env_prefix = "qa" # Override to qa env
         # env_prefix = "dev"
-    return TestedEnvironment(env_prefix)
+    return Environment(env_prefix)
 
 
-@pytest.fixture(scope="function")
+@fixture(scope="function")
 def driver(browser, env, request):
     headless = request.config.getoption("--headless")
     maximize_window = request.config.getoption("--maximize")
@@ -43,18 +44,32 @@ def driver(browser, env, request):
     driver.quit()
 
 
-@pytest.fixture(scope="session")
+@fixture(scope="session")
 def log():
     return None     # TODO Add logger
 
 
-@pytest.fixture(scope="session")
+@fixture(scope="session")
 def data():
     return None     # TODO Add data file per env
 
 
-@pytest.fixture(scope="class")
+@fixture
+def pages(driver, auth_cookies_cache) -> PageFactory:
+    """Create page object factory"""
+    return PageFactory(driver, auth_cookies_cache)
+
+
+@fixture(scope="session")
+def auth_cookies_cache():
+    """
+    Session-scoped cache for authentication cookies.
+    Stores cookies per user to avoid repeated authentication.
+    """
+    return {}
+
+
+@fixture(scope="class")
 def gui_test_class_setup(request, data, log):
     request.cls.data = data
     request.cls.log = log
-

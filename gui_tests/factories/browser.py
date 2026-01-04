@@ -31,7 +31,7 @@ class BrowserFactory:
         if self.browser not in self._supported_browsers:
             raise ValueError(f"Unsupported browser: {self.browser}. Supported: {list(self._supported_browsers.keys())}")
         driver = self._supported_browsers[self.browser]()
-        self._log_browser_info(driver)
+        # self._log_browser_info(driver) # For debugging purposes
         return driver
 
     def _chrome(self):
@@ -84,7 +84,8 @@ class BrowserFactory:
         # Disable password manager
         options.add_experimental_option("prefs", {
             "credentials_enable_service": False,
-            "profile": {"password_manager_enabled": False}
+            "profile.password_manager_enabled": False,
+            "profile.password_manager_leak_detection": False
         })
 
         # Docker/CI compatibility

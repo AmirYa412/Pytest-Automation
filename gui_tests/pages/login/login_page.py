@@ -1,19 +1,19 @@
-from gui_tests.utils.base_page import BasePage
-from gui_tests.pages.locators.login_page_locators import LoginPageLocators
-from gui_tests.pages.locators.home_page_locators import HomePageLocators
+from gui_tests.pages.base_page import BasePage
+from gui_tests.pages.login.locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+    PATH = "/"
 
-    def is_home_logo_displayed(self):
+    def perform_login(self, user):
         try:
-            return self.is_element_displayed(HomePageLocators.HOMEPAGE_MAIN_LOGO)
-        except Exception as e:
-            raise Exception(e)
+            user_credentials = self.env.users[user]
+        except KeyError:
+            raise KeyError(f"Wrong user key provided. Environment: {self.env} Available users: {self.env.users.keys()}")
+        self.send_text_to_element(locator=LoginPageLocators.USERNAME_FIELD, text=user_credentials["username"])
+        self.send_text_to_element(locator=LoginPageLocators.PASSWORD_FIELD, text=user_credentials["password"])
+        self.click_element(LoginPageLocators.LOGIN_BUTTON)
 
     def is_err_msg_displayed(self):
-        try:
-            return self.is_element_displayed(LoginPageLocators.LOGIN_ERR_MSG)
-        except Exception as e:
-            raise Exception(e)
+        return self.is_element_displayed(LoginPageLocators.LOGIN_ERR_MSG)
 
