@@ -1,11 +1,13 @@
-import os
+from pathlib import Path
 import json
-from pytest import fixture, hookimpl
+from pytest import fixture
 from pytest import mark
 from gui_tests.factories.pages import PageFactory
 from gui_tests.factories.browser import BrowserFactory
 from gui_tests.support.environment import Environment
-from gui_tests.support.environment import GUI_PROJECT_ROOT
+from gui_tests.logger import LoggerFactory
+
+GUI_PROJECT_ROOT = Path(__file__).parent.resolve()
 
 
 def pytest_addoption(parser):
@@ -13,17 +15,6 @@ def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default=None, help="Invalid browser")
     parser.addoption("--headless", action="store_true", help="run in headless")
     parser.addoption("--maximize", action="store_true", help="maximize window")
-
-
-@fixture(scope="session")
-def browser(request):
-    browser = request.config.getoption("--browser")
-    if not browser:
-        browser = "chrome" # Default to Chrome if --browser not provided
-        # browser = "firefox"
-        # browser = "edge"
-        # browser = "safari"
-    return browser
 
 
 @fixture(scope="session")
@@ -37,8 +28,19 @@ def env(request):
     return Environment(env_prefix)
 
 
+@fixture(scope="session")
+def browser(request):
+    browser = request.config.getoption("--browser")
+    if not browser:
+        browser = "chrome" # Default to Chrome if --browser not provided
+        # browser = "firefox"
+        # browser = "edge"
+        # browser = "safari"
+    return browser
+
+
 @fixture(scope="function")
-def driver(browser, env, request):
+def driver(env, browser, request):
     headless = request.config.getoption("--headless")
     maximize_window = request.config.getoption("--maximize")
     driver_manager = BrowserFactory(browser=browser, headless=headless, maximize_window=maximize_window)
@@ -48,17 +50,17 @@ def driver(browser, env, request):
     driver.quit()
 
 
-@fixture(scope="session")
-def log():
-    return None     # TODO Add logger
-
+@fixture(scope="session", autouse=True)
+def logger():
+    """Session-scoped logger."""
+    return LoggerFactory(project="gui")
 
 @fixture(scope="session")
 def data(env):
     hardcoded_filename = "production.json"
     if env.is_ci:
         hardcoded_filename = "ci.json"
-    file_path = os.path.join(GUI_PROJECT_ROOT, "hardcoded_data", hardcoded_filename)
+    file_path = Path(GUI_PROJECT_ROOT) / "hardcoded_data" / hardcoded_filename
     with open(file_path, 'r') as f:
         return json.load(f)
 
@@ -79,15 +81,22 @@ def auth_cookies_cache():
 
 
 @fixture(scope="class")
-def gui_test_class_setup(request, data, log):
+def gui_test_class_setup(request, data):
     request.cls.data = data
-    request.cls.log = log
-
 
 
 ###############################################################
-# HTML REPORT CONFIGURATIONS
+# REPORTING CONFIGURATIONS
 ###############################################################
+
+
+@fixture(scope="function", autouse=True)
+def log_test_execution(request, logger):
+    """Log test start and end automatically."""
+    test_name = request.node.name
+    logger.info(f"*** TEST {test_name} STARTING")
+    yield  # Test runs here
+    logger.info(f"*** TEST {test_name} ENDED")
 
 
 @mark.hookwrapper

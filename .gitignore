@@ -5,3 +5,4 @@ geckodriver.log
 .idea
 *reports/*
 .gitignore
+logs
