@@ -21,12 +21,9 @@ class Header:
 
     def click_shopping_cart(self):
         """Click shopping cart icon."""
-        self.page.click_element(HeaderLocators.SHOPPING_CART_LINK)
+        self.page.click_element(HeaderLocators.SHOPPING_CART_BUTTON)
 
-    def get_cart_item_count(self):
-        """Get number of items in cart from badge."""
-        return self.page.get_element_text(HeaderLocators.SHOPPING_CART_BADGE)
-
-    def open_menu(self):
+    def click_sidebar_menu(self):
         """Open burger menu (sidebar)."""
-        self.page.click_element(HeaderLocators.BURGER_MENU_BUTTON)
+        self.page.click_element(HeaderLocators.SIDEBAR_MENU_BUTTON)
+
