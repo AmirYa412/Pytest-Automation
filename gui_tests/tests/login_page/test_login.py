@@ -6,11 +6,11 @@ pytestmark = pytest.mark.gui
 @pytest.mark.usefixtures("gui_test_class_setup")
 class TestLoginPage:
 
-    def test_login_redirect_to_homepage(self, pages):
+    def test_login_redirect_to_inventory_page(self, pages):
         pages.login.navigate()
         pages.login.perform_login(user="standard_user")
         assert "/inventory.html" in pages.login.driver.current_url
-        assert pages.home.is_home_logo_displayed()
+        assert pages.inventory.header.is_logo_displayed()
 
     def test_red_err_msg_with_invalid_login_credentials(self, pages):
         pages.login.navigate()

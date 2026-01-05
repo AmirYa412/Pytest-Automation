@@ -1,5 +1,5 @@
 from gui_tests.pages.login.login_page import LoginPage
-from gui_tests.pages.home.home_page import HomePage
+from gui_tests.pages.inventory.inventory_page import InventoryPage
 from gui_tests.utilities.auth_helper import AuthHelper
 
 
@@ -24,9 +24,9 @@ class PageFactory:
         return self._pages_cache['login']
 
     @property
-    def home(self) -> HomePage:
-        """Get or create HomePage instance"""
-        if 'home' not in self._pages_cache:
-            self._pages_cache['home'] = HomePage(self._driver,)
-        return self._pages_cache['home']
+    def inventory(self) -> InventoryPage:
+        """Get or create InventoryPage instance"""
+        if 'inventory' not in self._pages_cache:
+            self._pages_cache['inventory'] = InventoryPage(self._driver, )
+        return self._pages_cache['inventory']
 
