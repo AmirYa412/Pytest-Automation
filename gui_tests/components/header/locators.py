@@ -5,6 +5,5 @@ class HeaderLocators(object):
     """Locators for header component."""
     APP_LOGO = LocatorHelper.by_class("app_logo")
     PAGE_TITLE = LocatorHelper.by_class("title")
-    SHOPPING_CART_LINK = LocatorHelper.by_data_test("shopping-cart-link")
-    SHOPPING_CART_BADGE = LocatorHelper.by_data_test("shopping-cart-badge")
-    BURGER_MENU_BUTTON = LocatorHelper.by_id("react-burger-menu-btn")
+    SHOPPING_CART_BUTTON = LocatorHelper.by_data_test("shopping-cart-link")
+    SIDEBAR_MENU_BUTTON = LocatorHelper.by_id("react-burger-menu-btn")
