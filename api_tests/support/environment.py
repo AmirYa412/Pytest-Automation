@@ -1,8 +1,6 @@
-import os
 from api_tests.support.users import PRODUCTION_USERS, CI_USERS
 
 CI_ENVS_PREFIXES = ("qa", "dev")
-_API_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 class TestedEnvironment:

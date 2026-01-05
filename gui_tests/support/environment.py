@@ -1,7 +1,6 @@
-import os
+from pathlib import Path
 from gui_tests.users.users import PRODUCTION_USERS, CI_USERS
 
-GUI_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 class Environment:

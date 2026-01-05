@@ -1,3 +1,4 @@
+import logging
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -14,32 +15,29 @@ class BasePage:
         self.driver = driver
         self.env = self.driver.env
         self.timeout = self.env.timeout
+        self.logger = logging.getLogger(f"gui.{self.__class__.__name__}")
 
     def navigate(self, path=None, verify_on_page=True):
         """Navigate to page with optional validation."""
         target = path if path is not None else self.PATH
+        self.logger.info(f"navigating to {target}")
         self.driver.get(f"{self.env.base_url}{target}")
         if verify_on_page:
-            # self.verify_on_page(expected_url_substring=target)
             self.verify_on_page()
             self.verify_page_title()
 
-    # def verify_on_page(self, expected_url_substring):
-    #     """Verify URL contains expected substring."""
-    #     current_url = self.driver.current_url
-    #     assert expected_url_substring  in current_url, f"Expected url {expected_url_substring}, but got {current_url}"
-
     def verify_on_page(self):
         """Verify URL contains expected substring."""
+        self.logger.info(f"verifying on correct path={self.PATH} by URL")
         current_url = self.driver.current_url
-        assert self.PATH  in current_url, f"Expected url {self.PATH}, but got {current_url}"
+        assert self.PATH in current_url, f"Expected url {self.PATH}, but got {current_url}"
 
     def verify_page_title(self):
         """Verify page title matches TITLE attribute (if set)."""
-        if self.TITLE and hasattr(self, 'header'):  # ← Single check
+        if self.TITLE and hasattr(self, 'header'):
+            self.logger.info(f"verifying subtitle: {self.TITLE} on header")
             actual_title = self.header.get_page_title()
-            assert actual_title == self.TITLE, \
-                f"Expected page title '{self.TITLE}', but got '{actual_title}'"
+            assert actual_title == self.TITLE, f"Expected page title '{self.TITLE}', but got '{actual_title}'"
 
     def get_current_page_title(self):
         return self.driver.title

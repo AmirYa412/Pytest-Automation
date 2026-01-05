@@ -4,7 +4,6 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 
 
-
 class BrowserFactory:
     """
     Modern Selenium 4 driver manager using built-in Selenium Manager.
@@ -25,7 +24,6 @@ class BrowserFactory:
             "firefox": self._firefox,
             "safari": self._safari
         }
-        # self._log_browser_info(driver) # For debugging purposes
 
     def create(self):
         """Get driver instance for specified browser."""
@@ -91,21 +89,3 @@ class BrowserFactory:
         # Docker/CI compatibility
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-
-    def _log_browser_info(self, driver):
-        """
-        Log browser version and configuration details.
-        TODO: Replace print with proper logger when logging is implemented.
-        """
-        try:
-            caps = driver.capabilities
-            browser_name = caps.get('browserName', 'Unknown')
-            browser_version = caps.get('browserVersion') or caps.get('version', 'Unknown')
-            platform_name = caps.get('platformName', 'Unknown')
-            print(f"{'=' * 60}\nBROWSER SESSION INFO\n{'=' * 60}")
-            print(f"Browser:      {browser_name.title()} {browser_version}")
-            print(f"Platform:     {platform_name}")
-            print(f"Headless:     {self.headless}")
-            print(f"Maximized:    {self.maximize_window}")
-        except Exception as e:
-            print(f"Warning: Could not log browser info: {e}")

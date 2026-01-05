@@ -18,7 +18,6 @@ class InventoryPage(BasePage):
 
     def add_item_to_cart(self, item_name: str):
         """Add an item to cart by its name."""
-        # Build the locator right here in the page object
         normalized_name = item_name.lower().replace(' ', '-')
         data_test_value = f"add-to-cart-{normalized_name}"
         add_button_locator = LocatorHelper.by_data_test(data_test_value)
