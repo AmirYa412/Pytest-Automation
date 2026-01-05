@@ -1,10 +1,16 @@
 from gui_tests.pages.base_page import BasePage
 from gui_tests.pages.shopping_cart.locators import ShoppingCartPageLocators
-
+from gui_tests.components.header.header import Header
+from gui_tests.components.sidebar_menu.sidebar_menu import SidebarMenu
 
 class ShoppingCartPage(BasePage):
     PATH = "/cart.html"
     TITLE = "Your Cart"
+
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.header = Header(self)
+        self.sidebar = SidebarMenu(self)
 
     def is_item_in_cart(self, item_name: str) -> bool:
         """Check if a specific item is present in the cart."""
