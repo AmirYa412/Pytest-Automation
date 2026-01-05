@@ -1,6 +1,7 @@
 import os
 import json
-from pytest import fixture
+from pytest import fixture, hookimpl
+from pytest import mark
 from gui_tests.factories.pages import PageFactory
 from gui_tests.factories.browser import BrowserFactory
 from gui_tests.support.environment import Environment
@@ -81,3 +82,28 @@ def auth_cookies_cache():
 def gui_test_class_setup(request, data, log):
     request.cls.data = data
     request.cls.log = log
+
+
+
+###############################################################
+# HTML REPORT CONFIGURATIONS
+###############################################################
+
+
+@mark.hookwrapper
+def pytest_runtest_makereport(item):
+    """Hook to access test execution status. Used to attach screenshot on failure"""
+    try:
+        pytest_html = item.config.pluginmanager.getplugin('html')
+        outcome = yield
+        report = outcome.get_result()
+        extra = getattr(report, 'extra', [])
+
+        if report.when == 'call' and report.failed:
+            if 'driver' in item.fixturenames:
+                driver = item.funcargs['driver']
+                screenshot_base64 = driver.get_screenshot_as_base64()
+                extra.append(pytest_html.extras.image(screenshot_base64, mime_type='image/png'))
+        report.extra = extra
+    except Exception as e:
+        print(f"Error in taking screenshot: {e}")
