@@ -9,8 +9,8 @@ class LocatorHelper:
         """
         Create locator using data-test attribute.
 
-        Example:
-            ADD_BUTTON = LocatorHelper.by_data_test("add-to-cart-sauce-labs-bolt-t-shirt")
+        Args:
+            value: Value of data-test attribute
         """
         return By.CSS_SELECTOR, f'[data-test="{value}"]'
 
@@ -19,8 +19,8 @@ class LocatorHelper:
         """
         Find element by partial data-test match.
 
-        Example:
-            ALL_ADD_BUTTONS = LocatorHelper.by_partial_data_test("add-to-cart")
+        Args:
+            partial_value: Partial value to match in data-test attribute
         """
         return By.CSS_SELECTOR, f'[data-test*="{partial_value}"]'
 

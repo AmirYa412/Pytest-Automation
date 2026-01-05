@@ -25,13 +25,13 @@ class BrowserFactory:
             "firefox": self._firefox,
             "safari": self._safari
         }
+        # self._log_browser_info(driver) # For debugging purposes
 
     def create(self):
         """Get driver instance for specified browser."""
         if self.browser not in self._supported_browsers:
             raise ValueError(f"Unsupported browser: {self.browser}. Supported: {list(self._supported_browsers.keys())}")
         driver = self._supported_browsers[self.browser]()
-        # self._log_browser_info(driver) # For debugging purposes
         return driver
 
     def _chrome(self):

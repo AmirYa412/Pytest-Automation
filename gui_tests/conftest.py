@@ -24,7 +24,7 @@ def browser(request):
 
 @fixture(scope="session")
 def env(request):
-    """Determine which environment driver send requests to """
+    """Determine which environment will be tested by domain prefix"""
     env_prefix = request.config.getoption("--gui_env")   # Terminal Option
     if not env_prefix:
         env_prefix = "www"
