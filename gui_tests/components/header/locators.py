@@ -7,3 +7,4 @@ class HeaderLocators(object):
     PAGE_TITLE = LocatorHelper.by_class("title")
     SHOPPING_CART_BUTTON = LocatorHelper.by_data_test("shopping-cart-link")
     SIDEBAR_MENU_BUTTON = LocatorHelper.by_id("react-burger-menu-btn")
+    SHOPPING_CART_BADGE = LocatorHelper.by_data_test("shopping-cart-badge")

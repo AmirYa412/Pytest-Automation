@@ -1,4 +1,3 @@
-# gui_tests/components/header.py
 from gui_tests.pages.base_page import BasePage
 from gui_tests.components.header.locators import HeaderLocators
 
@@ -27,3 +26,11 @@ class Header:
         """Open burger menu (sidebar)."""
         self.page.click_element(HeaderLocators.SIDEBAR_MENU_BUTTON)
 
+    def get_page_title(self) -> str:
+        """Get the title text from the header."""
+        return self.page.get_element_text(HeaderLocators.PAGE_TITLE)
+
+    def get_cart_item_count(self) -> int:
+        """Get the number of items in the shopping cart badge."""
+        badge_text = self.page.get_element_text(HeaderLocators.SHOPPING_CART_BADGE)
+        return int(badge_text)

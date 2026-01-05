@@ -1,9 +1,9 @@
-import pytest
+from pytest import mark
 
-pytestmark = pytest.mark.gui
+pytestmark = mark.gui
 
 
-@pytest.mark.usefixtures("gui_test_class_setup")
+@mark.usefixtures("gui_test_class_setup")
 class TestLoginPage:
 
     def test_login_redirect_to_inventory_page(self, pages):
