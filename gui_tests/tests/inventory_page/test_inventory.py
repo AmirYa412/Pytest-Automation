@@ -1,9 +1,9 @@
-import pytest
+from pytest import mark
 
-pytestmark = pytest.mark.gui
+pytestmark = mark.gui
 
 
-@pytest.mark.usefixtures("gui_test_class_setup")
+@mark.usefixtures("gui_test_class_setup")
 class TestInventoryPage:
     def test_inventory_page_navigate_for_logged_in_user(self, pages):
         pages.authenticate(user="standard_user")

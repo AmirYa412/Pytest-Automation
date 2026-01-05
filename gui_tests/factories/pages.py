@@ -1,5 +1,6 @@
 from gui_tests.pages.login.login_page import LoginPage
 from gui_tests.pages.inventory.inventory_page import InventoryPage
+from gui_tests.pages.shopping_cart.shopping_cart_page import ShoppingCartPage
 from gui_tests.utilities.auth_helper import AuthHelper
 
 
@@ -29,4 +30,11 @@ class PageFactory:
         if 'inventory' not in self._pages_cache:
             self._pages_cache['inventory'] = InventoryPage(self._driver, )
         return self._pages_cache['inventory']
+
+    @property
+    def shopping_cart(self) -> ShoppingCartPage:
+        """Get or create ShoppingCartPage instance"""
+        if 'shopping_cart' not in self._pages_cache:
+            self._pages_cache['shopping_cart'] = ShoppingCartPage(self._driver, )
+        return self._pages_cache['shopping_cart']
 

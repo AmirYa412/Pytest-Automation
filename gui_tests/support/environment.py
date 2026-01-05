@@ -1,7 +1,7 @@
 import os
 from gui_tests.users.users import PRODUCTION_USERS, CI_USERS
 
-_GUI_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+GUI_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 class Environment:

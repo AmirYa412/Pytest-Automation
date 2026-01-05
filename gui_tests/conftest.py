@@ -1,7 +1,10 @@
+import os
+import json
 from pytest import fixture
 from gui_tests.factories.pages import PageFactory
 from gui_tests.factories.browser import BrowserFactory
 from gui_tests.support.environment import Environment
+from gui_tests.support.environment import GUI_PROJECT_ROOT
 
 
 def pytest_addoption(parser):
@@ -50,8 +53,13 @@ def log():
 
 
 @fixture(scope="session")
-def data():
-    return None     # TODO Add data file per env
+def data(env):
+    hardcoded_filename = "production.json"
+    if env.is_ci:
+        hardcoded_filename = "ci.json"
+    file_path = os.path.join(GUI_PROJECT_ROOT, "hardcoded_data", hardcoded_filename)
+    with open(file_path, 'r') as f:
+        return json.load(f)
 
 
 @fixture

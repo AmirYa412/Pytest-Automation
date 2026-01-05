@@ -1,3 +1,4 @@
+from gui_tests.utilities.locator_helper import LocatorHelper
 from gui_tests.pages.base_page import BasePage
 from gui_tests.pages.inventory.locators import InventoryPageLocators
 from gui_tests.components.header.header import Header
@@ -14,6 +15,14 @@ class InventoryPage(BasePage):
 
     def are_items_titles_displayed(self):
         return self.is_element_displayed(InventoryPageLocators.INVENTORY_ITEM_TITLE)
+
+    def add_item_to_cart(self, item_name: str):
+        """Add an item to cart by its name."""
+        # Build the locator right here in the page object
+        normalized_name = item_name.lower().replace(' ', '-')
+        data_test_value = f"add-to-cart-{normalized_name}"
+        add_button_locator = LocatorHelper.by_data_test(data_test_value)
+        self.click_element(add_button_locator)
 
     def click_sort_button(self):
         return self.click_element(InventoryPageLocators.SORT_DROPDOWN)
