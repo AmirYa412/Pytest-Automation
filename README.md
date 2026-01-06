@@ -1,48 +1,73 @@
-## Test Automation Project - Pytest Framework
+# Python Test Automation Portfolio
 
+A comprehensive test automation suite demonstrating modern Python testing practices across unit, API, and GUI testing domains.
 
-#### INFO:
-This repo contains 3 test automation projects [API, GUI, Unit] written in Python using `Pytest`.
-Every project has `conftest.py` file, which in charge of the `TestClasses` setups for each project - search for `_test_class_setup` @fixtures for constructors.
+## 📁 Projects
 
+### 🔬 [Unit Tests](./unit_tests/README.md)
+Python unit testing with pytest, mocking, and test-driven development patterns.
+- **Framework:** pytest
+- **Focus:** Unit testing, mocking Google APIs, string/integer utilities
 
-#### Projects:
-| Project  | Dir | Tested Service | Library used | Design
-| ------------- | ------------- | ------------- | ------------- |------------- |
-| API  | ```/api_tests```| https://petstore.swagger.io | requests |API endpoints to classes  |
-| WEB GUI  | ```/gui_test``` | https://www.saucedemo.com | selenium, webdriver-manager |Page Object Pattern |
-| Unit | ```/unit_test``` | Demo functions | pytest-mock | Test file in module level
+### 🌐 [API Tests](./api_tests/README.md)
+RESTful API testing framework with schema validation and retry logic.
+- **Framework:** pytest + requests
+- **Target:** Petstore Swagger API
+- **Features:** JSON schema validation, automatic retry, session management
 
+### 🖥️ [GUI Tests](./gui_tests/README.md)
+Modern Selenium 4 web automation framework with smart authentication and component patterns.
+- **Framework:** pytest + Selenium 4
+- **Target:** SauceDemo
+- **Features:** Cookie-based auth caching, Page Object Model, parallel execution
 
-#### Installation
-All 3 projects has been tested and verified with `Python 3.7` on `MacOS` & `Windows 10`.
-Since webdriver-manager usage, to run GUI tests you might need to update your Chrome/Edge/Firefox browsers.
+## 🚀 Quick Start
 
+### Prerequisites
+- Python 3.14 (or Python 3.11+ recommended)
+- pip (Python package manager)
+- Git
 
-To install project's requirements, in terminal navigate to main dir:
+### Installation
+```bash
+# Clone repository
+git clone <repository-url>
+cd <project-root>
 
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install project-specific dependencies
+cd api_tests && pip install -r requirements.txt && cd ..
+cd gui_tests && pip install -r requirements.txt && cd ..
+cd unit_tests && pip install -r requirements.txt && cd ..
 ```
-cd Pytest-Automation-Project/
-pip install -r requirements.txt
+
+### Run Tests
+```bash
+# API Tests
+cd api_tests && pytest tests/ -v
+
+# GUI Tests  
+cd gui_tests && pytest tests/ -v
+
+# Unit Tests
+cd unit_tests && pytest tests/ -v
 ```
 
-#### Commands
+## 📊 Tech Stack
 
-You can run "pytest" command from a single project dir or repo's root.
-
-* Default env value is production for all projects.
-* Please don't run constantly to avoid rate-limit.
-
-| Command  | Info | Inputs Examples
-| ------------- | ------------- | ------------- |
-| ```pytest -m api```  | Run tests by marker, pytestmark global variable | ```-m api```, ```-m gui```, ```-m unit```  |
-| ```pytest -m api --api_env=petstore``` | *Run inside **/api_tests** to enable this terminal option | ```-m api --api_env=qa```  |
-| ```pytest -m gui --gui_env=www``` | *Run inside **/gui_tests** to enable this terminal option | ```-m gui --gui_env=qa-petstore```  |
-| ```pytest -m gui --browser=chrome```  | *Run inside **/gui_tests** - Choose browser to initiate| ```--browser=firefox```, ```--browser=edge```, ```--browser=chrome```  |
-| ```pytest -n 2```  | Run tests in parallel | ```-n 2```, ```-n 3```  |
+| Technology | Version | Used In |
+|------------|---------|---------|
+| Python | 3.14 | All projects |
+| pytest | 9.0+ | All projects |
+| Selenium | 4.x | GUI tests |
+| requests | 2.32+ | API tests |
 
 
-#### Reports
+
+### Reports
 
 ##### pytest-html
 pytest-html is a plugin that generate test report HTML file with a single command,
@@ -55,3 +80,21 @@ pytest --html=reports/my_report.html --self-contained-html
 ```
 
 ![pytest-html](https://i.imgur.com/IL93Zgq.png)
+
+## 📖 Documentation
+
+Each project contains comprehensive documentation:
+- Architecture diagrams
+- Design patterns explained
+- Best practices demonstrated
+- Code examples and usage guides
+
+## 🎯 Skills Demonstrated
+
+✅ Clean architecture & separation of concerns  
+✅ Modern Python patterns (factories, fixtures, type hints)  
+✅ Test isolation & independence  
+✅ CI/CD ready infrastructure  
+✅ Performance optimization (caching, parallel execution)  
+✅ Professional logging & reporting  
+✅ Security best practices (environment variables, no hardcoded secrets)  

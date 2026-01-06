@@ -1,5 +1,6 @@
 from pytest import mark
 
+pytestmark = [mark.gui, mark.cart]
 
 @mark.usefixtures("gui_test_class_setup")
 class TestShoppingCartPage:
