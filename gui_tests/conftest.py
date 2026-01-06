@@ -40,12 +40,11 @@ def browser(request):
 
 
 @fixture(scope="function")
-def driver(env, browser, request):
+def driver(browser, request):
     headless = request.config.getoption("--headless")
     maximize_window = request.config.getoption("--maximize")
     driver_manager = BrowserFactory(browser=browser, headless=headless, maximize_window=maximize_window)
     driver = driver_manager.create()
-    driver.env = env
     yield driver
     driver.quit()
 
@@ -66,9 +65,9 @@ def data(env):
 
 
 @fixture
-def pages(driver, auth_cookies_cache) -> PageFactory:
+def pages(driver, env, auth_cookies_cache) -> PageFactory:
     """Create page object factory"""
-    return PageFactory(driver, auth_cookies_cache)
+    return PageFactory(driver, auth_cookies_cache, env)
 
 
 @fixture(scope="session")

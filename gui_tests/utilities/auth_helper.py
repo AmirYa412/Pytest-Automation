@@ -1,27 +1,27 @@
 from datetime import datetime, timedelta
-
 from selenium.webdriver.ie.webdriver import WebDriver
+from gui_tests.support.environment import Environment
 
 
 class AuthHelper:
     """Helper for managing authentication state via cookies."""
 
     @staticmethod
-    def auth_with_cookie(driver: WebDriver, user_key: str, cookies_cache: dict):
+    def auth_with_cookie(driver: WebDriver, env : Environment, user_key: str, cookies_cache: dict):
         """
         Inject authentication cookie for specified user to bypasses UI login for faster test setup.
 
         Args:
-            driver: WebDriver instance
+            env : Environment instance
             user_key: User key from environment.users (e.g., "standard_user")
             cookies_cache : cached cookies for re-use
         """
         try:
-            user_data = driver.env.users[user_key]
+            user_data = env.users[user_key]
         except KeyError:
-            raise KeyError(f"User '{user_key}' not found. Available users: {list(driver.env.users.keys())}")
+            raise KeyError(f"User '{user_key}' not found. Available users: {list(env.users.keys())}")
 
-        driver.get(driver.env.base_url) # Navigate to domain required to set cookies
+        driver.get(env.base_url) # Navigate to domain required to set cookies
         if user_key in cookies_cache: # Reuse cached authentication cookie if available
             for cookie in cookies_cache[user_key]:
                 driver.add_cookie(cookie)
@@ -30,7 +30,7 @@ class AuthHelper:
                 'name': 'session-username',
                 'value': user_data['username'],
                 'path': '/',
-                'domain': driver.env.domain,
+                'domain': env.domain,
                 'secure': False,
                 'httpOnly': False,
                 'expiry': int((datetime.now() + timedelta(days=1)).timestamp()) # 1 day from now

@@ -3,8 +3,12 @@ from gui_tests.pages.login.locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+
     PATH = "/"
     TITLE = None
+
+    def __init__(self, driver, env):
+        super().__init__(driver, env)
 
     def perform_login(self, user):
         try:

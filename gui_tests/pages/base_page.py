@@ -5,15 +5,16 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import TimeoutException
+from gui_tests.support.environment import Environment
 
 
 class BasePage:
     PATH = "/"    # Default path, override by subclass
     TITLE = None  # Default title, override by subclass
 
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver, env: Environment):
         self.driver = driver
-        self.env = self.driver.env
+        self.env = env
         self.timeout = self.env.timeout
         self.logger = logging.getLogger(f"gui.{self.__class__.__name__}")
 

@@ -8,8 +8,8 @@ class InventoryPage(BasePage):
     PATH = "/inventory.html"
     TITLE = "Products"
 
-    def __init__(self, driver):
-        super().__init__(driver)
+    def __init__(self, driver, env):
+        super().__init__(driver, env)
         self.header = Header(self)
         self.sidebar = SidebarMenu(self)
 
