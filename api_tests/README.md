@@ -395,8 +395,30 @@ class TestNewEndpoint:
 
 ### Step 3: Run Your New Test
 
+### Run Tests by Multiple Markers
 ```bash
-pytest tests/test_new_endpoint.py -v
+# Run all store tests
+pytest -m store -v
+```
+
+```bash
+# Run tests with BOTH markers (AND)
+pytest -m "api and store" -v
+```
+
+```bash
+# Run tests with EITHER marker (OR)  
+pytest -m "api or store" -v
+```
+
+```bash
+# Run and generate a report
+pytest "--html=reports/report.html --self-contained-html" -v
+```
+
+```bash
+# Run in parallel (-n is amount of spawned workers)
+pytest -n 4 -v
 ```
 
 ### Adding Schema Validation (Optional)

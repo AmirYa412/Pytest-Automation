@@ -12,7 +12,7 @@ class StoreInventory(Client):
         return self.get_request(self.PATH)
 
     @staticmethod
-    def validate_inventory_response_schema(response_data: dict) -> None:
+    def validate_inventory_response_schema(response_data: dict):
         """Validate store inventory response structure.
 
         Args:
@@ -53,7 +53,7 @@ class StoreOrder(Client):
         }
 
     @staticmethod
-    def validate_order_response_schema(response_data: dict) -> None:
+    def validate_order_response_schema(response_data: dict):
         """Validate order creation response structure.
 
         Args:

@@ -5,7 +5,7 @@ class LocatorHelper:
     """Helper for building robust locators."""
 
     @staticmethod
-    def by_data_test(value) -> tuple[str, str]:
+    def by_data_test(value: str) -> tuple[str, str]:
         """
         Create locator using data-test attribute.
 
@@ -15,7 +15,7 @@ class LocatorHelper:
         return By.CSS_SELECTOR, f'[data-test="{value}"]'
 
     @staticmethod
-    def by_partial_data_test(partial_value) -> tuple[str, str]:
+    def by_partial_data_test(partial_value: str) -> tuple[str, str]:
         """
         Find element by partial data-test match.
 

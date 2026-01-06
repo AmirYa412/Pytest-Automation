@@ -12,13 +12,13 @@ class Environment:
 
 
     def __init__(self, env_prefix: str):
-        self.env_prefix : str = env_prefix
-        self.protocol : str = "https://"
-        self.host : str = f"{self.env_prefix}.swagger.io"
-        self.api_ver : str= "/v2"
-        self.is_ci_env : bool = True if env_prefix in CI_ENVS_PREFIXES else False
-        self.headers : dict = self._set_env_headers()
-        self.users : dict = self.get_automation_users()
+        self.env_prefix = env_prefix
+        self.protocol = "https://"
+        self.host = f"{self.env_prefix}.swagger.io"
+        self.api_ver = "/v2"
+        self.is_ci_env = True if env_prefix in CI_ENVS_PREFIXES else False
+        self.headers = self._set_env_headers()
+        self.users = self.get_automation_users()
 
     def _set_env_headers(self):
         return {

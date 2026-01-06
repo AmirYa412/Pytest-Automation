@@ -4,6 +4,7 @@ from gui_tests.components.header.header import Header
 from gui_tests.components.sidebar_menu.sidebar_menu import SidebarMenu
 
 class ShoppingCartPage(BasePage):
+    """Shopping Cart Page Object Model."""
     PATH = "/cart.html"
     TITLE = "Your Cart"
 

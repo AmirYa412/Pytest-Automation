@@ -19,7 +19,7 @@ class User(Client):
         }
 
     @staticmethod
-    def validate_login_response_schema(response_data: dict) -> None:
+    def validate_login_response_schema(response_data: dict):
         """Validate user login response structure.
 
         Args:

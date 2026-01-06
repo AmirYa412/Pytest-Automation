@@ -78,7 +78,7 @@ class GoogleClient:
         # Add 60 second buffer to refresh before actual expiry
         return datetime.now() >= (self.token_expiry - timedelta(seconds=60))
 
-    def _ensure_authenticated(self) -> None:
+    def _ensure_authenticated(self):
         """Ensure valid authentication token exists."""
         if self._is_token_expired():
             self.login()

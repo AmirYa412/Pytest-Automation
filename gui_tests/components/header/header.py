@@ -14,7 +14,7 @@ class Header:
         """
         self.page = base_page
 
-    def is_logo_displayed(self):
+    def is_logo_displayed(self) -> bool:
         """Check if app logo is visible."""
         return self.page.is_element_displayed(HeaderLocators.APP_LOGO)
 
