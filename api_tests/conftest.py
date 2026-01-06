@@ -1,6 +1,6 @@
 from pathlib import Path
 from pytest import fixture
-from api_tests.support.environment import TestedEnvironment
+from api_tests.support.environment import Environment
 
 _API_PROJECT_ROOT = Path(__file__).parent.resolve()
 
@@ -17,7 +17,7 @@ def env(request):
         env_prefix = "petstore"                  # Override PROD  env
         # env_prefix = "qa-petstore"             # Override to dummy QA env
         # env_prefix = "dev-petstore"            # Override to dummy DEV env
-    return TestedEnvironment(env_prefix)
+    return Environment(env_prefix)
 
 
 @fixture(scope="class")

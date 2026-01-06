@@ -1,3 +1,4 @@
+"""Load environment variables from .env file and define user credentials for different environments."""
 import os
 from dotenv import load_dotenv
 
