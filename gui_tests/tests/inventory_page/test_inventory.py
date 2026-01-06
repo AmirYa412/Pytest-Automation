@@ -1,6 +1,6 @@
 from pytest import mark
 
-pytestmark = mark.gui
+pytestmark = [mark.gui, mark.inventory]
 
 
 @mark.usefixtures("gui_test_class_setup")
