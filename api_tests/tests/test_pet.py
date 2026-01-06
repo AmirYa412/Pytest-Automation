@@ -1,20 +1,23 @@
-from pytest import mark, fixture
+from pytest import mark
 from api_tests.api_models.pet import Pet
 from api_tests.api_models.pet import PetFindByStatus
+from api_tests.support.environment import Environment
 
-pytestmark = mark.api
+pytestmark = [mark.api, mark.pet]
 
 
 @mark.usefixtures("api_test_class_setup")
 class TestPet:
+
     client : Pet
+    env : Environment
+
     def setup_method(self):
         if not hasattr(self.__class__, 'client'):
             self.__class__.client = Pet(self.env)
 
     def teardown_method(self):
         self.client.reset_session()
-
 
     def test_new_pet_creation(self):
         data = self.client.get_payload_data(pet_id=123, pet_name="Luci", category_id=2, category_name="Dogs",
@@ -39,11 +42,16 @@ class TestPet:
     def test_get_by_invalid_pet_id_error_404(self):
         response = self.client.get_pet("InvalidID")
         assert response.status_code == 404
+        self.client.validate_error_response_schema(response.json())
+
 
 
 @mark.usefixtures("api_test_class_setup")
 class TestPetFindByStatus:
+
     client : PetFindByStatus
+    env : Environment
+
     def setup_method(self):
         if not hasattr(self.__class__, 'client'):
             self.__class__.client = PetFindByStatus(self.env)
@@ -56,4 +64,5 @@ class TestPetFindByStatus:
         response = self.client.get_pets_by_status(status)
         assert response.status_code == 200
         response_data = response.json()
+        self.client.validate_pet_list_schema(response_data)
         assert self.client.validate_results_in_expected_status(status, response_data)

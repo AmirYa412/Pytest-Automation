@@ -3,15 +3,22 @@ from api_tests.support.users import PRODUCTION_USERS, CI_USERS
 CI_ENVS_PREFIXES = ("qa", "dev")
 
 
-class TestedEnvironment:
-    def __init__(self, env_prefix):
-        self.env_prefix = env_prefix
-        self.protocol = "https://"
-        self.host = self.env_prefix + ".swagger.io"
-        self.api_ver = "/v2"
-        self.is_ci_env = True if env_prefix in CI_ENVS_PREFIXES else False
-        self.headers = self._set_env_headers()
-        self.users = self.get_automation_users()
+class Environment:
+    """Configuration for API test environment.
+
+    Manages environment-specific settings including base URLs, headers,
+    and user credentials for both CI and production environments.
+    """
+
+
+    def __init__(self, env_prefix: str):
+        self.env_prefix : str = env_prefix
+        self.protocol : str = "https://"
+        self.host : str = f"{self.env_prefix}.swagger.io"
+        self.api_ver : str= "/v2"
+        self.is_ci_env : bool = True if env_prefix in CI_ENVS_PREFIXES else False
+        self.headers : dict = self._set_env_headers()
+        self.users : dict = self.get_automation_users()
 
     def _set_env_headers(self):
         return {
@@ -32,6 +39,14 @@ class TestedEnvironment:
         }
 
     def get_automation_users(self):
+        """Get automation user credentials for the current environment.
+
+        Returns:
+            Dictionary of user credentials
+
+        Raises:
+            EnvironmentError: If any user is missing a password
+        """
         users = CI_USERS if self.is_ci_env else PRODUCTION_USERS
         if any(user.get("password") is None for user in users.values()):
             raise EnvironmentError(f"Test users are missing passwords. {self.env_prefix} | {users}")

@@ -2,28 +2,32 @@ import requests
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 import logging
-from time import tzset
 
 TIMEOUT = 30
 FORCE_RETRY_LIST = [502, 503, 504, 520, 524]
 
 
 class Client:
+    """HTTP client for API testing with automatic retry and session management.
+
+    Provides methods for GET, POST, PUT, DELETE requests with built-in
+    retry logic for transient failures and consistent session handling.
+    """
 
     def __init__(self, env):
         self.env = env
-        self.base_url = f"{self.env.protocol}{self.env.host}"
-        self.api_ver = self.env.api_ver
-        self.users = env.users
-        self.session = requests.Session()
-        self._default_headers = self.session.headers.copy()
+        self.base_url : str = f"{self.env.protocol}{self.env.host}"
+        self.api_ver : str = self.env.api_ver
+        self.users : dict = env.users
+        self.session : requests.Session = requests.Session()
+        self._default_headers : dict = self.session.headers.copy()
         self.session.headers.update(self.env.headers)
         self.session.verify = False
         self._set_session_retries()
         self._set_requests_logging()
 
-    def _set_session_retries(self):
-        """Create a requests session with automatic retry configuration"""
+    def _set_session_retries(self) -> None:
+        """Configure automatic retry strategy for transient failures."""
         retry_strategy = Retry(
             total=3,           # Total number of retries, for all response errors
             backoff_factor=1,  # Wait time between retries (1, 2, 4, 8 seconds...)
@@ -35,10 +39,14 @@ class Client:
         self.session.mount("https://", standard_adapter)
 
     @staticmethod
-    def _set_requests_logging(level=logging.DEBUG):
+    def _set_requests_logging(level : int = logging.DEBUG):
+        """
+        Configure logging for requests and urllib3 libraries.
+        Default to DEBUG for detailed requests timeline.
+        """
         logging.getLogger("urllib3").setLevel(level)
 
-    def post_request(self, path, data=None, params=None, files=None, json=None):
+    def post_request(self, path : str, data=None, params=None, files=None, json=None) -> requests.Response:
         try:
             response = self.session.post(f"{self.base_url}{self.api_ver}{path}",
                                          data=data,
@@ -50,7 +58,7 @@ class Client:
         except requests.exceptions.RequestException as e:
             raise Exception(f"Failed POST request to {self.base_url}{self.api_ver}{path}, error: {e}")
 
-    def get_request(self, path, params=None):
+    def get_request(self, path : str, params=None) -> requests.Response:
         try:
             response = self.session.get(f"{self.base_url}{self.api_ver}{path}",
                                         params=params,
@@ -59,7 +67,7 @@ class Client:
         except requests.exceptions.RequestException as e:
             raise Exception(f"Failed GET request to {self.base_url}{self.api_ver}{path}, error: {e}")
 
-    def put_request(self, path, data=None, json=None):
+    def put_request(self, path : str, data=None, json=None) -> requests.Response:
         try:
             response = self.session.put(f"{self.base_url}{self.api_ver}{path}",
                                         data=data, json=json, timeout=TIMEOUT)
@@ -67,7 +75,7 @@ class Client:
         except requests.exceptions.RequestException as e:
             raise Exception(f"Failed PUT request, error: {e}")
 
-    def delete_request(self, path):
+    def delete_request(self, path : str) -> requests.Response:
         try:
             response = self.session.delete(f"{self.base_url}{self.api_ver}{path}",
                                            timeout=TIMEOUT)
@@ -76,7 +84,8 @@ class Client:
             raise Exception(f"Failed DELETE request, error: {e}")
 
 
-    def reset_session(self):
+    def reset_session(self) -> None:
+        """Reset session headers and cookies to default state."""
         self.session.headers = self._default_headers.copy()
         self.session.headers.update(self.env.headers)
         self.session.cookies.clear()
