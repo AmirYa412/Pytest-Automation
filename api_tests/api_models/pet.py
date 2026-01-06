@@ -6,7 +6,7 @@ class Pet(Client):
 
     PATH = "/pet"
 
-    def create_pet(self, data : dict) -> Response:
+    def create_pet(self, data: dict) -> Response:
         return self.post_request(self.PATH, json=data)
 
     def get_pet(self, pet_id: int | str) -> Response:
@@ -41,7 +41,7 @@ class Pet(Client):
         }
 
     @staticmethod
-    def validate_pet_creation_schema(response_data : dict) -> None:
+    def validate_pet_creation_schema(response_data: dict):
         pet_schema = {
             "type": "object",
             "properties": {
@@ -80,7 +80,7 @@ class Pet(Client):
         validate(instance=response_data, schema=pet_schema)
 
     @staticmethod
-    def validate_error_response_schema(response_data: dict) -> None:
+    def validate_error_response_schema(response_data: dict):
         """Validate API error response structure, based on status code"""
         error_schema = {
             "type": "object",
@@ -99,7 +99,7 @@ class PetFindByStatus(Client):
     PATH = "/pet/findByStatus"
 
     @staticmethod
-    def get_query_params(status : str | None=None) -> dict:
+    def get_query_params(status: str | None=None) -> dict:
         return {"status": status}
 
     def get_pets_by_status(self, status: str) -> Response:
@@ -108,7 +108,7 @@ class PetFindByStatus(Client):
         return self.get_request(self.PATH, params=params)
 
     @staticmethod
-    def validate_pet_list_schema(response_data: list) -> None:
+    def validate_pet_list_schema(response_data: list):
         """Validate list of pets response structure.
 
         Args:
@@ -136,7 +136,7 @@ class PetFindByStatus(Client):
         validate(instance=response_data, schema=pet_list_schema)
 
     @staticmethod
-    def validate_results_in_expected_status(status : str, items : list[dict]) -> bool:
+    def validate_results_in_expected_status(status: str, items: list[dict]) -> bool:
         try:
             for pet in items:
                 if pet["status"] != status:

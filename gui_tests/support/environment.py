@@ -4,7 +4,8 @@ from gui_tests.users.users import PRODUCTION_USERS, CI_USERS
 
 
 class Environment:
-    def __init__(self, env_prefix, protocol=None):
+    """Configuration for test environment - URLs, users, timeouts, headers etc..."""
+    def __init__(self, env_prefix: str, protocol: str=None):
         self.prefix = env_prefix
         self.protocol = protocol if protocol else "https://"
         self.domain = f"{self.prefix}.saucedemo.com"
@@ -13,13 +14,15 @@ class Environment:
         self.users = self.get_automation_users()
         self.timeout = 10 if self.is_ci else 5
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return  f"<Environment prefix='{self.prefix}' base_url='{self.base_url}' is_ci={self.is_ci} timeout={self.timeout}>"
 
-    def is_ci_environment(self):
+    def is_ci_environment(self) -> bool:
+        """Check if environment is CI (qa/dev)."""
         return self.prefix in ("qa", "dev")
 
-    def get_automation_users(self):
+    def get_automation_users(self) -> dict:
+        """Get user credentials for current environment with validation."""
         users = CI_USERS if self.is_ci else PRODUCTION_USERS
         # Validate users have passwords
         for user_key, user_data in users.items():

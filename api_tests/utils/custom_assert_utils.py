@@ -6,7 +6,7 @@ class KeyAsserter:
     """
 
     @staticmethod
-    def verify_expected_keys_in_response_data(response_keys: list, expected_keys: list) -> None:
+    def verify_expected_keys_in_response_data(response_keys: list, expected_keys: list):
         """Verify all expected keys exist in the response.
 
         Args:

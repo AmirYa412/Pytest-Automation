@@ -5,6 +5,7 @@ from gui_tests.components.header.header import Header
 from gui_tests.components.sidebar_menu.sidebar_menu import SidebarMenu
 
 class InventoryPage(BasePage):
+    """SauceDemo inventory/home page."""
     PATH = "/inventory.html"
     TITLE = "Products"
 
@@ -13,7 +14,7 @@ class InventoryPage(BasePage):
         self.header = Header(self)
         self.sidebar = SidebarMenu(self)
 
-    def are_items_titles_displayed(self):
+    def are_items_titles_displayed(self) -> bool:
         return self.is_element_displayed(InventoryPageLocators.INVENTORY_ITEM_TITLE)
 
     def add_item_to_cart(self, item_name: str):
@@ -24,12 +25,12 @@ class InventoryPage(BasePage):
         self.click_element(add_button_locator)
 
     def click_sort_button(self):
-        return self.click_element(InventoryPageLocators.SORT_DROPDOWN)
+        self.click_element(InventoryPageLocators.SORT_DROPDOWN)
 
-    def choose_option(self, sort_by):
+    def choose_option(self, sort_by: str):
         self.choose_option_from_dropdown_by_value(InventoryPageLocators.SORT_DROPDOWN, sort_by)
 
-    def are_items_sorted_as_expected(self, sort_by):
+    def are_items_sorted_as_expected(self, sort_by: str) -> bool:
         elements = self.driver.find_elements(*InventoryPageLocators.INVENTORY_ITEM_PRICE)
         for i in range(len(elements)-1):
             element1_price = float(elements[i].text.split("$")[1])

@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from selenium.webdriver.ie.webdriver import WebDriver
+from selenium.webdriver.remote.webdriver import WebDriver
 from gui_tests.support.environment import Environment
 
 
@@ -7,11 +7,12 @@ class AuthHelper:
     """Helper for managing authentication state via cookies."""
 
     @staticmethod
-    def auth_with_cookie(driver: WebDriver, env : Environment, user_key: str, cookies_cache: dict):
+    def auth_with_cookie(driver: WebDriver, env: Environment, user_key: str, cookies_cache: dict):
         """
         Inject authentication cookie for specified user to bypasses UI login for faster test setup.
 
         Args:
+            driver : WebDriver instance
             env : Environment instance
             user_key: User key from environment.users (e.g., "standard_user")
             cookies_cache : cached cookies for re-use
@@ -39,7 +40,7 @@ class AuthHelper:
             cookies_cache[user_key] = [cookie]
 
     @staticmethod
-    def is_authenticated(driver) -> bool:
+    def is_authenticated(driver: WebDriver) -> bool:
         """
         Check if driver has valid authentication cookie.
 
@@ -50,7 +51,7 @@ class AuthHelper:
         return 'session-username' in cookies
 
     @staticmethod
-    def get_current_user(driver) -> str | None:
+    def get_current_user(driver: WebDriver) -> str | None:
         """
         Get currently authenticated username.
 
@@ -61,7 +62,7 @@ class AuthHelper:
         return cookies.get('session-username')
 
     @staticmethod
-    def logout(driver):
+    def logout(driver : WebDriver):
         """Clear authentication cookies."""
         driver.delete_cookie('session-username')
         driver.refresh()

@@ -30,6 +30,7 @@ def env(request):
 
 @fixture(scope="session")
 def browser(request):
+    """Get browser name from CLI option or use default."""
     browser = request.config.getoption("--browser")
     if not browser:
         browser = "chrome" # Default to Chrome if --browser not provided
@@ -41,6 +42,7 @@ def browser(request):
 
 @fixture(scope="function")
 def driver(browser, request):
+    """Create WebDriver instance for test."""
     headless = request.config.getoption("--headless")
     maximize_window = request.config.getoption("--maximize")
     driver_manager = BrowserFactory(browser=browser, headless=headless, maximize_window=maximize_window)
@@ -67,7 +69,7 @@ def data(env):
 @fixture
 def pages(driver, env, auth_cookies_cache) -> PageFactory:
     """Create page object factory"""
-    return PageFactory(driver, auth_cookies_cache, env)
+    return PageFactory(driver, env, auth_cookies_cache)
 
 
 @fixture(scope="session")

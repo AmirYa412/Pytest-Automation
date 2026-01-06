@@ -1,3 +1,4 @@
+from selenium.webdriver.ie.webdriver import WebDriver
 from gui_tests.pages.login.login_page import LoginPage
 from gui_tests.pages.inventory.inventory_page import InventoryPage
 from gui_tests.pages.shopping_cart.shopping_cart_page import ShoppingCartPage
@@ -8,7 +9,7 @@ from gui_tests.utilities.auth_helper import AuthHelper
 class PageFactory:
     """Factory for lazy-loading page objects"""
 
-    def __init__(self, driver, auth_cookies_cache: dict, env: Environment):
+    def __init__(self, driver: WebDriver, env: Environment ,auth_cookies_cache: dict):
         self._driver = driver
         self._env = env
         self._pages_cache = {}

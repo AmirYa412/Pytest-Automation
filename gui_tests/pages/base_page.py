@@ -1,5 +1,6 @@
 import logging
-from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
@@ -18,7 +19,7 @@ class BasePage:
         self.timeout = self.env.timeout
         self.logger = logging.getLogger(f"gui.{self.__class__.__name__}")
 
-    def navigate(self, path=None, verify_on_page=True):
+    def navigate(self, path: str=None, verify_on_page=True):
         """Navigate to page with optional validation."""
         target = path if path is not None else self.PATH
         self.logger.info(f"navigating to {target}")
@@ -40,7 +41,7 @@ class BasePage:
             actual_title = self.header.get_page_title()
             assert actual_title == self.TITLE, f"Expected page title '{self.TITLE}', but got '{actual_title}'"
 
-    def get_current_page_title(self):
+    def get_current_page_title(self) -> str:
         return self.driver.title
 
     def refresh_page(self):
@@ -48,7 +49,7 @@ class BasePage:
 
     # ========== WAIT METHODS (Return Elements) ==========
 
-    def explicit_wait_element_visibility(self, locator, timeout=None):
+    def explicit_wait_element_visibility(self, locator, timeout: int = None) -> WebElement:
         """Wait for an element to be visible on the page.
         Returns the WebElement if found within the timeout period."""
         timeout = timeout or self.timeout
@@ -58,7 +59,7 @@ class BasePage:
             error_msg = f"Element not visible after {timeout}s | Locator: {locator}\n URL: {self.driver.current_url}"
             raise TimeoutException(error_msg) from e
 
-    def explicit_wait_element_clickable(self, locator, timeout=None):
+    def explicit_wait_element_clickable(self, locator, timeout: int = None) -> WebElement:
         """Wait for an element to be clickable on the page.
         Returns the WebElement if found within the timeout period."""
         timeout = timeout or self.timeout
@@ -70,15 +71,15 @@ class BasePage:
 
     # ========== ELEMENT INTERACTIONS ==========
 
-    def is_element_displayed(self, locator):
+    def is_element_displayed(self, locator) -> bool:
         element = self.explicit_wait_element_visibility(locator)
         return element.is_displayed()
 
-    def get_element_text(self, locator):
+    def get_element_text(self, locator) -> str:
         element = self.explicit_wait_element_visibility(locator)
         return element.text
 
-    def send_text_to_element(self, locator, text):
+    def send_text_to_element(self, locator, text : str):
         element = self.explicit_wait_element_visibility(locator)
         element.clear()
         element.send_keys(text)
@@ -87,7 +88,7 @@ class BasePage:
         element = self.explicit_wait_element_clickable(locator)
         element.click()
 
-    def choose_option_from_dropdown_by_value(self, locator, value):
+    def choose_option_from_dropdown_by_value(self, locator, value : str):
         element = self.explicit_wait_element_visibility(locator)
         dropdown = Select(element)
         dropdown.select_by_value(value)
@@ -103,5 +104,5 @@ class BasePage:
     def double_click_element(self, element):
         ActionChains(self.driver).double_click(element).perform()
 
-    def get_page_source_code(self):
+    def get_page_source_code(self) -> str:
         return self.driver.page_source
