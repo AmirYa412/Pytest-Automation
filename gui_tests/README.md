@@ -172,7 +172,7 @@ python -c "import selenium; print(selenium.__version__)"  # Should show 4.x
 
 The framework uses **environment variables** for sensitive data following security best practices.
 
-==NOTE: For simplicity, .env commited to the project, but in real life scenarios, you store sensitive data in a more secured approach.==
+<mark>NOTE: For simplicity, the .env file is included in this repository. In a real work environment, sensitive variables should be managed using a secure secret management service.</mark>
 
 #### Create `.env` file:
 ```bash
