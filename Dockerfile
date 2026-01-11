@@ -5,17 +5,14 @@ FROM --platform=${PLATFORM} python:3.14-slim
 # Install System Dependencies, Chrome, Firefox & Cleanup
 # =================================================
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget gnupg curl unzip ca-certificates \
+    curl unzip ca-certificates \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libgbm1 \
+    libasound2 \
     && update-ca-certificates \
-    \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
-    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-    \
-    && apt-get update && apt-get install -y --no-install-recommends \
-        google-chrome-stable \
-        firefox-esr \
-    \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
