@@ -754,7 +754,7 @@ class NewPage(BasePage):
 
 ### HTML Reports with pytest-html
 
-Generate beautiful HTML test reports with screenshots on failure:
+Generate HTML test reports with screenshots on failure:
 ```bash
 pytest tests/ --html=../reports/gui_report.html --self-contained-html -v
 ```

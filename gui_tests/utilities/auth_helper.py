@@ -1,3 +1,4 @@
+import time
 from datetime import datetime, timedelta
 from selenium.webdriver.remote.webdriver import WebDriver
 from gui_tests.support.environment import Environment
@@ -31,7 +32,7 @@ class AuthHelper:
                 'name': 'session-username',
                 'value': user_data['username'],
                 'path': '/',
-                'domain': env.domain,
+                'domain': f".{env.domain.replace('www.', '')}",
                 'secure': False,
                 'httpOnly': False,
                 'expiry': int((datetime.now() + timedelta(days=1)).timestamp()) # 1 day from now

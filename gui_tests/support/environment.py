@@ -1,6 +1,4 @@
-from pathlib import Path
 from gui_tests.users.users import PRODUCTION_USERS, CI_USERS
-
 
 
 class Environment:
