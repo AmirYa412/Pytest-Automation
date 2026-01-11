@@ -66,6 +66,7 @@ class BrowserFactory:
         """Apply common configurations to Chromium-based drivers."""
         if self.headless:
             options.add_argument("--headless=new")
+            options.add_argument("--disable-gpu")
 
         # Window management
         if self.maximize_window:
