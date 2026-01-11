@@ -6,3 +6,4 @@ geckodriver.log
 *reports/*
 .gitignore
 logs
+.DS_Store

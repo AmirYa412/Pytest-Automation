@@ -6,3 +6,4 @@
 reports/
 screenshots/
 *venv
+.DS_Store
