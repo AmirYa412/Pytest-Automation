@@ -90,6 +90,14 @@ def gui_test_class_setup(request, data):
 # REPORTING CONFIGURATIONS
 ###############################################################
 
+@fixture(scope="session", autouse=True)
+def update_metadata(metadata, browser):
+    try:
+        """Adds metadata to HTML report"""
+        metadata['Browser'] = browser.capitalize()
+    except Exception as e:
+        print(f"Failed to add browser metadata to report {e}")
+
 
 @fixture(scope="function", autouse=True)
 def log_test_execution(request, logger):

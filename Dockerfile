@@ -2,10 +2,10 @@ ARG PLATFORM=linux/amd64
 FROM --platform=${PLATFORM} python:3.14-slim
 
 # =================================================
-# Install System Dependencies, Chrome, Firefox & Cleanup
+# Install System Dependencies & Cleanup
 # =================================================
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl unzip ca-certificates \
+    wget gnupg curl unzip ca-certificates \
     libnss3 \
     libatk-bridge2.0-0 \
     libgtk-3-0 \

@@ -50,6 +50,7 @@ class BrowserFactory:
         options = FirefoxOptions()
         if self.headless:
             options.add_argument("--headless")
+            options.accept_insecure_certs = True
         driver = webdriver.Firefox(options=options)
         if self.maximize_window:
             driver.maximize_window()
