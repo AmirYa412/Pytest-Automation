@@ -29,6 +29,7 @@ class StoreInventory(Client):
 
 
 class StoreOrder(Client):
+
     PATH = "/store/order"
 
     def create_order(self, data: dict) -> Response:
