@@ -10,7 +10,7 @@ pytestmark = [mark.api, mark.user]
 class TestUserLogin:
 
     client: User
-    env : Environment
+    env: Environment
 
     def setup_method(self):
         if not hasattr(self.__class__, 'client'):

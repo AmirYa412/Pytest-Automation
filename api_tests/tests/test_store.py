@@ -9,8 +9,8 @@ pytestmark = [mark.api, mark.store]
 @mark.usefixtures("api_test_class_setup")
 class TestStoreInventory:
 
-    client : StoreInventory
-    env : Environment
+    client: StoreInventory
+    env: Environment
 
     def setup_method(self):
         if not hasattr(self.__class__, 'client'):
