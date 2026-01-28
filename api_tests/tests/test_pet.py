@@ -9,8 +9,8 @@ pytestmark = [mark.api, mark.pet]
 @mark.usefixtures("api_test_class_setup")
 class TestPet:
 
-    client : Pet
-    env : Environment
+    client: Pet
+    env: Environment
 
     def setup_method(self):
         if not hasattr(self.__class__, 'client'):

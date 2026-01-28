@@ -1,4 +1,3 @@
-import time
 from datetime import datetime, timedelta
 from selenium.webdriver.remote.webdriver import WebDriver
 from gui_tests.support.environment import Environment
