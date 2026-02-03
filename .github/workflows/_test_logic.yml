@@ -1,0 +1,83 @@
+name: Reusable Test Logic
+
+on:
+  workflow_call:
+    inputs:
+      markers:
+        required: true
+        type: string
+        description: "Pytest marker expression passed to -m"
+      browser:
+        required: false
+        type: string
+        default: "none"
+        description: "Browser type (none = skip browser args)"
+      workers:
+        required: false
+        type: string
+        default: "1"
+
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+
+jobs:
+  execute-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t pytest-automation .
+
+      - name: Run Pytest
+        id: run-tests
+        continue-on-error: true
+        run: |
+          # Marker
+          if [[ "${{ inputs.markers }}" == "all" ]]; then
+            MARKER_ARG=""
+          else
+            MARKER_ARG="-m \"${{ inputs.markers }}\""
+          fi
+
+          # Browser (gui only)
+          if [[ "${{ inputs.browser }}" != "none" ]]; then
+            BROWSER_ARG="--browser ${{ inputs.browser }} --headless"
+          else
+            BROWSER_ARG=""
+          fi
+
+          # Workers
+          WORKER_ARG="-n ${{ inputs.workers }}"
+
+          # Full command
+          CMD="pytest $MARKER_ARG $WORKER_ARG $BROWSER_ARG"
+          echo "Running: $CMD"
+
+          docker run --rm \
+            -v ${{ github.workspace }}/reports:/app/reports \
+            pytest-automation bash -c "$CMD"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports/
+
+      - name: Publish Pages
+        if: always()
+        uses: actions/deploy-pages@v4
+
+      - name: Add report link to summary
+        if: always()
+        run: |
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "## 📊 Test Report" >> $GITHUB_STEP_SUMMARY
+          echo "[Open Report](https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}/report.html)" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check test status
+        if: steps.run-tests.outcome == 'failure'
+        run: exit 1

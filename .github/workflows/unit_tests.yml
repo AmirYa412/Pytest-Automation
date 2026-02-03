@@ -1,0 +1,17 @@
+name: ⚙️ Run Unit Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      workers:
+        description: "Parallel Workers"
+        type: choice
+        default: "4" # Unit tests are fast, default to high concurrency
+        options: ["1", "2", "4", "auto"]
+
+jobs:
+  call-unit-tests:
+    uses: ./.github/workflows/_test_logic.yml
+    with:
+      markers: ${{ inputs.marker == 'all' && 'unit' || inputs.marker }}
+      workers: ${{ inputs.workers }}

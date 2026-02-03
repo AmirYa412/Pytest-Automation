@@ -7,6 +7,8 @@ from unit_tests.src.exceptions.google_exceptions import GoogleAuthError
 from unit_tests.utils.mocks.google_mocks import GoogleAuthMocks
 
 
+pytestmark = pytest.mark.unit
+
 
 class TestGoogleClientAuthentication:
 

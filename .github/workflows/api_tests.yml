@@ -1,0 +1,26 @@
+name: 🚀 Run API Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      marker:
+        description: "Select API Scope"
+        type: choice
+        default: all
+        options:
+          - all
+          - pet
+          - store
+          - user
+      workers:
+        description: "Parallel Workers"
+        type: choice
+        default: "1"
+        options: ["1", "2", "4"]
+
+jobs:
+  call-api-tests:
+    uses: ./.github/workflows/_test_logic.yml
+    with:
+      markers: ${{ inputs.marker == 'all' && 'api' || inputs.marker }}
+      workers: ${{ inputs.workers }}

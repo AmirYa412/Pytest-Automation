@@ -2,6 +2,7 @@ import pytest
 from unit_tests.src.google.google_photos import GoogleClientPhotos
 from unit_tests.utils.mocks.google_mocks import GooglePhotosMocks
 from unit_tests.src.exceptions.google_exceptions import PaginationError
+
 pytestmark = pytest.mark.unit
 
 

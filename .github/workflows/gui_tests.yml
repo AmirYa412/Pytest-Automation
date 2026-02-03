@@ -1,0 +1,34 @@
+name: 🖥️ Run GUI Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      marker:
+        description: "Select GUI Scope"
+        type: choice
+        default: all
+        options:
+          - all
+          - inventory
+          - login
+          - cart
+      browser:
+        description: "Select Browser"
+        type: choice
+        default: chrome
+        options:
+          - chrome
+          - firefox
+      workers:
+        description: "Parallel Workers"
+        type: choice
+        default: "1"
+        options: ["1", "2", "4"]
+
+jobs:
+  call-gui-tests:
+    uses: ./.github/workflows/_test_logic.yml
+    with:
+      markers: ${{ inputs.marker == 'all' && 'gui' || inputs.marker }}
+      browser: ${{ inputs.browser }}
+      workers: ${{ inputs.workers }}
