@@ -1,0 +1,120 @@
+name: Pytest Automation Tests
+
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Project to run"
+        type: choice
+        required: true
+        default: all
+        options:
+          - all
+          - unit
+          - api
+          - gui
+      markers:
+        description: "Narrow by marker — 'all' runs full project scope"
+        type: choice
+        default: all
+        options:
+          - all
+          - inventory
+          - login
+          - cart
+          - pet
+          - store
+          - user
+          - pagination
+      browser:
+        description: "Browser (gui tests only, ignored for unit/api)"
+        type: choice
+        default: chrome
+        options:
+          - chrome
+          - firefox
+      workers:
+        description: "Parallel test workers (-n)"
+        type: choice
+        default: "1"
+        options:
+          - "1"
+          - "2"
+          - "4"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t pytest-automation .
+
+      - name: Run tests
+        id: run-tests
+        continue-on-error: true
+        env:
+          PROJECT: ${{ github.event.inputs.project }}
+          MARKERS: ${{ github.event.inputs.markers }}
+          BROWSER: ${{ github.event.inputs.browser }}
+          WORKERS: ${{ github.event.inputs.workers }}
+        run: |
+          OPTS=()
+
+          # --- Marker expression: 4 cases ---
+          # all  + all     →  no -m flag (run everything)
+          # all  + marker  →  -m <marker>
+          # proj + all     →  -m <project>
+          # proj + marker  →  -m "<project> and <marker>"
+          if [[ "$PROJECT" == "all" && "$MARKERS" == "all" ]]; then
+            :  # no-op — run full suite
+          elif [[ "$PROJECT" == "all" ]]; then
+            OPTS+=("-m" "$MARKERS")
+          elif [[ "$MARKERS" == "all" ]]; then
+            OPTS+=("-m" "$PROJECT")
+          else
+            OPTS+=("-m" "${PROJECT} and ${MARKERS}")
+          fi
+
+          # --- Parallel workers ---
+          OPTS+=("-n" "$WORKERS")
+
+          # --- Browser: gui and all only. Headless always on — no display in CI ---
+          if [[ "$PROJECT" == "gui" || "$PROJECT" == "all" ]]; then
+            OPTS+=("--browser" "$BROWSER" "--headless")
+          fi
+
+          echo "Executing: pytest ${OPTS[@]}"
+
+          docker run --rm \
+            -v ${{ github.workspace }}/reports:/app/reports \
+            pytest-automation pytest "${OPTS[@]}"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports/
+
+      - name: Publish Pages
+        if: always()
+        uses: actions/deploy-pages@v4
+
+      - name: Add report link to summary
+        if: always()
+        run: |
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "## 📊 Test Report" >> $GITHUB_STEP_SUMMARY
+          echo "[Open Report](https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}/report.html)" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check test status
+        if: steps.run-tests.outcome == 'failure'
+        run: exit 1
