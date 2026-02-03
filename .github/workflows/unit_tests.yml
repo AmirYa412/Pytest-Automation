@@ -13,5 +13,5 @@ jobs:
   call-unit-tests:
     uses: ./.github/workflows/_test_logic.yml
     with:
-      markers: ${{ inputs.marker == 'all' && 'unit' || inputs.marker }}
+      markers: unit
       workers: ${{ inputs.workers }}

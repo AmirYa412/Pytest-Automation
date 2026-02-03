@@ -44,7 +44,7 @@ jobs:
 
           # Browser (gui only)
           if [[ "${{ inputs.browser }}" != "none" ]]; then
-            BROWSER_ARG="--browser ${{ inputs.browser }} --headless"
+            BROWSER_ARG="--browser=${{ inputs.browser }} --headless"
           else
             BROWSER_ARG=""
           fi
