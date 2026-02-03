@@ -10,13 +10,6 @@ from gui_tests.logger import LoggerFactory
 GUI_PROJECT_ROOT = Path(__file__).parent.resolve()
 
 
-def pytest_addoption(parser):
-    parser.addoption("--gui_env", action="store", default=None, help="Invalid ENV")
-    parser.addoption("--browser", action="store", default=None, help="Invalid browser")
-    parser.addoption("--headless", action="store_true", help="run in headless")
-    parser.addoption("--maximize", action="store_true", help="maximize window")
-
-
 @fixture(scope="session")
 def env(request):
     """Determine which environment will be tested by domain prefix"""

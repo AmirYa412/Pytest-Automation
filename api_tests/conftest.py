@@ -5,10 +5,6 @@ from api_tests.support.environment import Environment
 _API_PROJECT_ROOT = Path(__file__).parent.resolve()
 
 
-def pytest_addoption(parser):
-    parser.addoption("--api_env", action="store", default=None, help="Invalid env prefix")
-
-
 @fixture(scope="session")
 def env(request):
     """Determine to which ClientSession will send requests to """
