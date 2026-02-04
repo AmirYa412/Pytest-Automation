@@ -67,7 +67,7 @@ jobs:
 
           docker run --rm \
             -v ${{ github.workspace }}/reports:/app/reports \
-            pytest-automation bash -c "$CMD"
+            pytest-automation:latest bash -c "$CMD"
 
       - name: Deploy to GitHub Pages
         id: deployment
