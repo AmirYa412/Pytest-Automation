@@ -5,7 +5,7 @@ from pytest import mark
 from gui_tests.factories.pages import PageFactory
 from gui_tests.factories.browser import BrowserFactory
 from gui_tests.support.environment import Environment
-from gui_tests.logger import LoggerFactory
+from logger import LoggerFactory
 
 GUI_PROJECT_ROOT = Path(__file__).parent.resolve()
 

@@ -1,3 +1,4 @@
+from logger import LoggerFactory
 from pathlib import Path
 from pytest import fixture
 from api_tests.support.environment import Environment
@@ -14,6 +15,21 @@ def env(request):
         # env_prefix = "qa-petstore"             # Override to dummy QA env
         # env_prefix = "dev-petstore"            # Override to dummy DEV env
     return Environment(env_prefix)
+
+
+@fixture(scope="session", autouse=True)
+def logger():
+    """Session-scoped logger."""
+    return LoggerFactory(project="api")
+
+
+@fixture(scope="function", autouse=True)
+def log_test_execution(request, logger):
+    """Log test start and end automatically."""
+    test_name = request.node.name
+    logger.info(f"*** TEST {test_name} STARTING")
+    yield  # Test runs here
+    logger.info(f"*** TEST {test_name} ENDED")
 
 
 @fixture(scope="class")
